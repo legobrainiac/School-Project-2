@@ -1,0 +1,7 @@
+ErrorDocument 404 /404.php
+
+IndexIgnore *
+
+Options +MultiViews
+
+Options -Indexes
