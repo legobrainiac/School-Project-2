@@ -10,22 +10,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title> Control Panel > Ahriru Productions </title>
-        <link rel="icon" type="image/png" href="../images/small_icon.png" /> 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style_panel.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/entypo-icon.css">
-        <link href="http://getbootstrap.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <script src="../js/script.js"></script>
-        <script src="http://getbootstrap.com/examples/offcanvas/offcanvas.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <title> Editar Perfil > +STD > STD Psiquitria </title>
+        <?=$headerContentPainel?>
         <?php 
             $username = $_SESSION["user"];
             $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
@@ -270,30 +256,6 @@
                                                 <input class="form-control" type="date" value="<?=$_birthday?>" name="txtBirthday">
                                             </div> <!-- .col-lg-8 -->
                                         </div> <!-- .form-group -->
-
-                                        <!--<?php if($dadosSession["permission"] == 1) {?>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label">Permission:</label>
-                                                <div class="col-md-8">
-                                                    <?php
-                                                        /*if(isset($_POST["btnAddUser"]) && empty($_POST["txtPassword"])) {
-                                                            $error = true;
-                                                            echo "
-                                                                <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                                <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                                <span class='sr-only'>Error:</span>
-                                                                Please, enter a password for the user account.
-                                                                </div>  
-                                                            ";
-                                                        }*/
-                                                    ?>
-                                                    <select name="txtPermission" class="form-control">
-                                                        <option value="administrator">Administrator</option>
-                                                        <option value="editor">Editor</option>
-                                                    </select>
-                                                </div> <!-- .col-lg-8 -->
-                                            <!--</div> <!-- .form-group -->
-                                        <!--<?php } ?>-->
 
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">Function:</label>

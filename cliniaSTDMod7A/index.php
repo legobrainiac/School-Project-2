@@ -42,12 +42,15 @@
           </div>
         </div>
       <?php } ?>
+
     <header>
         <?php include("header.php") ?>
     </header>
+
     <div id="slide">
         <?php include("slide.php"); ?>
     </div>
+
     <section class="body_container">
         <div class="row">
             <div class="col-lg-4">
@@ -87,6 +90,7 @@
             </div>
         </section>
     </section>
+    
     <section id="message">
         <a href=""><img src="http://schoolweb.tdsb.on.ca/Portals/soes/images/Form%20icon.png" align="right" height="150px" width="150px">
         <h1><b>Do you Like</b>? Give us your <b>feedback</b>.</h1></a>

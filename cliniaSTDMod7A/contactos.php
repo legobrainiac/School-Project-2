@@ -14,12 +14,12 @@
     <title>Contact > <?=$siteTitle . " | " . $siteSlogan?></title>
     <?=$headerContent?>
     <script type="text/javascript">
-    	$(function(){
-    		var menu_home = $('.home');
-    		var menu_contact = $('.contact');
-    		menu_home.removeClass("active");
-    		menu_contact.addClass("active");
-    	});
+        $(function(){
+            var menu_home = $('.home');
+            var menu_contact = $('.contact');
+            menu_home.removeClass("active");
+            menu_contact.addClass("active");
+        });
     </script>
   </head>
 
@@ -55,7 +55,7 @@
                     <br />
                     <form method="POST" action="">
                         <div class="form-group">
-                            <label for="frmContactTxtName">Name</label>
+                            <label for="frmContactTxtName">Nome</label>
                             <input type="text" name="txtName" class="form-control" id="frmContactTxtName" placeholder="Name" required>
                         </div>
                         <div class="form-group">
@@ -63,19 +63,19 @@
                             <input type="email" name="txtEmail" class="form-control" id="frmContactTxtEmail" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <label for="frmContactTxtSubject">Subject</label>
+                            <label for="frmContactTxtSubject">Assuto</label>
                             <input type="text" name="txtSubject" class="form-control" id="frmContactTxtSubject" placeholder="Subject">
                         </div>
                         <div class="form-group">
-                            <label for="frmContactTxtMessage" class="control-label">Message</label>
+                            <label for="frmContactTxtMessage" class="control-label">Messagem</label>
                             <textarea name="txtMessage" class="form-control" id="frmContactTxtMessage" rows="7" placeholder="Your Message" style="resize: none;" required></textarea>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="chkContact" value="true"> I want to be contacted
+                                <input type="checkbox" name="chkContact" value="true"> Quero ser contactado...
                             </label>
                         </div>
-                        <input type="submit" name="btnSubmit" class="btn btn-default" value="Submit >">
+                        <input type="submit" name="btnSubmit" class="btn btn-default" value="Enviar >">
                     </form>
                     <br />
                 </div> <!-- /.tab-content -->

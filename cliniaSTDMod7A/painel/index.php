@@ -11,9 +11,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title> Control Panel > Ahriru Productions </title>
+		<title> +STD > STD Psiquitria </title>
         <?=$headerContentPainel?>
-        <?php 
+        <?php
             $username = $_SESSION["user"];
             $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
             if($check->num_rows) {
