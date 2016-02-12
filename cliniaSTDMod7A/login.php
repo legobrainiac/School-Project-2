@@ -1,6 +1,6 @@
 <?php
 	include("connection.php");
-	include("functions.php");
+	include("util.php");
 	error_reporting(false);	
 	if (isset($_POST["send"])) {
 		if ($_POST["remember"]) {
@@ -8,13 +8,14 @@
 			setcookie("psw",$_POST["input_Pass"], time() + (86400 * 30));
 		}
 	}
+	$nomePagina = "Login +STD";
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Login > Ahiru Productions</title>
+		<title><?php echo "$nomePagina   >  $siteTitle | $siteSlogan"?></title>
 		<link rel="icon" type="image/png" href="images/small_icon.png" /> 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +54,7 @@
 			}
 
 			function message() {
-				alert('Temos Pena :( \nFala com o André... ele é uma pessoa fantástica e, se tiveres sorte e ele tiver paciência, vê-te isso!')
+				alert('Entra em contacto connosco.')
 			}
 
 		</script>
@@ -68,7 +69,7 @@
 				<div class="alert-danger" role="alert">
 					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 					<span class="sr-only">Error:</span>
-					This is a restricted area. Please, identify yourself.
+					&nbsp;Está a tentar aceder a uma área restrita.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Para continuar, inicie sessão.
 				</div>
 				<?php
 					}
@@ -78,12 +79,11 @@
 			<div id="login-form">
 				<form method="POST">
 					<div class="form-group">
-	                    <a onclick="message()" class="pull-right label-forgot" style="cursor: pointer;">Forgot email?</a>
-	                    <label for="inputUsernameEmail">Username or email</label>
+	                    <label for="inputUsernameEmail">Username ou email</label>
 	                    <input type="text" id="inputUsernameEmail" name="txtUsername" class="form-control">
 	                </div>
 					<div class="form-group">
-						<a onclick="message()" class="pull-right label-forgot" style="cursor: pointer;">Forgot password?</a>
+						<a onclick="message()" class="pull-right label-forgot" style="cursor: pointer;">Esqueceu a password?</a>
 						<label for="inputPassword">Password</label>
 						<div class="input-group">
 							<input type="password" class="form-control" id="password" name="txtPassword">
@@ -93,11 +93,11 @@
 						</div>
 					</div>
 					<br />
-					<input type="checkbox" id="remember" name="remember"><label for="remember">Remember Me</label>
+					<input type="checkbox" id="remember" name="remember"><label for="remember">&nbsp;Manter Sessão iniciada</label>
 					<input id="submit_login" name="btnLogin" type="submit" class="btn btn-primary pull-right" value="Login" id="btn_login">
 				</form>
 			</div>
-			<div style="color: #ffffff; text-align: center">&copy; 2015, Ahiru Productions</div>
+			<div style="color: #ffffff; text-align: center">&copy; 2015, <a href="www.ahiruproductions.com" style="text-decoration: none; color: #fff">Ahiru Productions</a></div>
 		</div>
 	</body>
 </html>

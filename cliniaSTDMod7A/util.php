@@ -1,4 +1,5 @@
 <?php
+    include("connection.php");
 	$headerContent = 
 	"<meta charset='utf-8'>
     <link rel='icon' type='image/png' href='images/small_icon.png' />
@@ -36,4 +37,23 @@
 	{
 		echo "<script>alert('$text')</script>";
 	}
+
+    function getSessionInfo() {
+        $username = $_SESSION["user"];
+        $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
+        $row   = $check->num_rows;
+        if($row) {
+            $dados = $check->fetch_array();
+            $id = $dados["ID"];
+            $name = $dados["nome"];
+        }
+    }
+
+    $siteData = $mysqli->query("SELECT * FROM site WHERE ID = 1");      
+    $siteData = $siteData->fetch_array();
+    $siteTitle = $siteData["nome"];
+    $siteSlogan = $siteData["slogan"];
+    $siteDesc   = $siteData["SobreNosTexto"];
+    $siteEmail = $siteData["email"];
+    $siteTelefone = $siteData["telefone"];
 ?>

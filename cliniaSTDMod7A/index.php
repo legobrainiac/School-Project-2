@@ -14,17 +14,13 @@
 
 <?php 
     include('connection.php');
-    include('functions.php');
-    $siteData = $mysqli->query("SELECT * FROM site WHERE ID = 1");      
-    $siteData = $siteData->fetch_array();
-    $siteTitle = $siteData["nome"];
-    $siteSlogan = $siteData["slogan"];
+    include('util.php');
 ?>
 
 <!DOCTYPE html>
 <html lang="pt">
   <head>
-    <title>Home > <?=$siteTitle . " | " . $siteSlogan?></title>
+    <title><?php echo "$siteTitle | $siteSlogan"?></title>
     <?=$headerContent?>
     <script>
       function close_alert() {

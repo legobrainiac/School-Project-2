@@ -1,18 +1,14 @@
 <?php 
     include('connection.php');
-    include('functions.php');
-
-    $siteData   = $mysqli->query("SELECT * FROM site WHERE ID = 1");      
-    $siteData   = $siteData->fetch_array();
-    $siteTitle  = $siteData["nome"];
-    $siteSlogan = $siteData["slogan"];
-    $siteDesc   = $siteData["SobreNosTexto"];
+    include('util.php');
+    if(isset($_GET))
+    $nomePagina = "Sobre Nós";
 ?>
 
 <!DOCTYPE html>
 <html lang="pt">
   <head>
-    <title>About > <?=$siteTitle . " | " . $siteSlogan?></title>
+    <title><?php echo "$nomePagina   >  $siteTitle | $siteSlogan"?></title>
     <?=$headerContent?>
     <script type="text/javascript">
     	$(function(){
@@ -31,7 +27,7 @@
 
     <section class="body_container">
         <div id="title">
-            <span id="title_page">About Us</span>
+            <span id="title_page"><?=$nomePagina?></span>
         </div>
 
         <div id="project">
@@ -43,8 +39,24 @@
                 <?=$siteDesc?>
             </div>
         </div>
+        <?php 
+            echo "
+                <script type='text/javascript'>
+                    $(document).ready(function () {
+                        if(window.location.href.indexOf('team') > -1) {
+                            var menu_home = $('.home');
+                            var menu_team = $('.team');
+                            var menu_about = $('.about');
+                            menu_home.removeClass('active');
+                            menu_about.removeClass('active');
+                            menu_team.addClass('active');
+                        }
+                    });
+                </script>
+            ";
+        ?>
         <div id="team">
-            <h4 style="margin-bottom: 15px">Our Team</h4>
+            <h4 style="margin-bottom: 15px">A nossa equipa</h4>
             <div class="members">
             </div>
         </div>

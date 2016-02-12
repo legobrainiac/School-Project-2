@@ -5,7 +5,7 @@
 	protegerPagina();
     include("sairPagina.php");
     sairPagina();
-    include("../functions.php");
+    include("../util.php");
 ?>
 
 <!DOCTYPE html>

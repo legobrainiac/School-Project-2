@@ -401,13 +401,18 @@ body#about ul#socialicon li{
 
 /* 404 ERROR */
 body#errorPg {
-	background-image: url("../images/background_we.png")
+	background-image: url("../images/background_we.png");
+	background-repeat:  no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 div#logo {
 	background-image: url("../images/logo_menu.png");
 	height: 70px;
-	width: 149px;
+	width: 105px;
 	background-repeat: none;
 	margin-top: 7px;
     margin-bottom: -5px;
@@ -456,8 +461,8 @@ a.error-link {
 }
 
 a.error-link:hover {
-	color: #FF5722; 
-	text-decoration: underline;
+	color: #fff;
+	text-shadow: 1px 1px 1px #000;
 }
 
 .text-yellow {

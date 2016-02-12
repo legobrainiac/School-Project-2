@@ -1,22 +1,19 @@
 <?php 
     include('connection.php');
-    include('functions.php');
-    $siteData = $mysqli->query("SELECT * FROM site WHERE ID = 1");      
-    $siteData = $siteData->fetch_array();
-    $siteTitle = $siteData["nome"];
-    $siteSlogan = $siteData["slogan"];
+    include('util.php');
     error_reporting(false);
+    $nomePagina = "Contactos";
 ?>
 
 <!DOCTYPE html>
 <html lang="pt">
   <head>
-    <title>Contact > <?=$siteTitle . " | " . $siteSlogan?></title>
+    <title><?php echo "$nomePagina   >  $siteTitle | $siteSlogan"?></title>
     <?=$headerContent?>
     <script type="text/javascript">
     	$(function(){
     		var menu_home = $('.home');
-    		var menu_contact = $('.contact');
+    		var menu_contact = $('.marcar_consulta');
     		menu_home.removeClass("active");
     		menu_contact.addClass("active");
     	});

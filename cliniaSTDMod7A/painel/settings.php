@@ -6,6 +6,7 @@
     include("sairPagina.php");
     sairPagina();
     $error = false;
+    include("../util.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,26 +15,6 @@
         <meta charset="utf-8">
         <title> Definições > +STD > STD Psiquitria </title>
         <?=$headerContentPainel?>
-        <?php 
-            $username = $_SESSION["user"];
-            $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
-            $row   = $check->num_rows;
-            if($row) {
-                $dados = $check->fetch_array();
-                $id = $dados["ID"];
-                $name = $dados["name"];
-            }
-
-            $check2 = $mysqli->query("SELECT * FROM site WHERE ID = 1");
-            $row2   = $check2->num_rows;
-            if($row2) {
-                $dados2 = $check2->fetch_array();
-                $siteTitle = $dados2["title"];
-                $siteSlogan = $dados2["slogan"];
-                $siteEmail = $dados2["email"];
-                $siteLang = $dados2["language"];
-            }
-        ?>
     </head>
 
     <body id="addPost">

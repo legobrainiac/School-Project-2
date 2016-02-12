@@ -1,10 +1,6 @@
 <?php 
     include('connection.php');
-    include('functions.php');
-    $siteData = $mysqli->query("SELECT * FROM site WHERE ID = 1");      
-    $siteData = $siteData->fetch_array();
-    $siteTitle = $siteData["nome"];
-    $siteSlogan = $siteData["slogan"];
+    include('util.php');
     error_reporting(false);
 ?>
 
@@ -29,7 +25,7 @@
     </header>
     <section class="body_container">
         <div id="title">
-            <span id="title_page">Contact Us</span>
+            <span id="title_page">Contactos</span>
         </div>
         <div id="contactosR" style="margin-bottom: 350px">
             <div class="col-md-9">
@@ -37,8 +33,8 @@
             </div>
             <div class="col-md-3">
                 <h4>Contactos:</h4><br />
-                <b>Telefone</b> | 800 20 1000<br />
-                <b>Email</b> | geral@lusiadas.pt<br />
+                <b>Telefone</b> | <?=$siteTelefone?><br />
+                <b>Email  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> | <?=$siteEmail?><br />
             </div>
         </div>
         <div class="tab-content">
@@ -56,7 +52,7 @@
                     <form method="POST" action="">
                         <div class="form-group">
                             <label for="frmContactTxtName">Nome</label>
-                            <input type="text" name="txtName" class="form-control" id="frmContactTxtName" placeholder="Name" required>
+                            <input type="text" name="txtName" class="form-control" id="frmContactTxtName" placeholder="Nome" required>
                         </div>
                         <div class="form-group">
                             <label for="frmContactTxtEmail">E-mail</label>
@@ -64,11 +60,11 @@
                         </div>
                         <div class="form-group">
                             <label for="frmContactTxtSubject">Assuto</label>
-                            <input type="text" name="txtSubject" class="form-control" id="frmContactTxtSubject" placeholder="Subject">
+                            <input type="text" name="txtSubject" class="form-control" id="frmContactTxtSubject" placeholder="Assunto">
                         </div>
                         <div class="form-group">
                             <label for="frmContactTxtMessage" class="control-label">Messagem</label>
-                            <textarea name="txtMessage" class="form-control" id="frmContactTxtMessage" rows="7" placeholder="Your Message" style="resize: none;" required></textarea>
+                            <textarea name="txtMessage" class="form-control" id="frmContactTxtMessage" rows="7" placeholder="Mensagem..." style="resize: none;" required></textarea>
                         </div>
                         <div class="checkbox">
                             <label>
@@ -83,7 +79,7 @@
                     <br />
                     <table class="table">
                         <?php
-                            $select = $mysqli->query("SELECT * FROM users ORDER BY ID ASC");
+                            $select = $mysqli->query("SELECT * FROM users WHERE permissoes = 1 AND username != 'admin' ORDER BY ID ASC");
                             $row = $select->num_rows;
                             if($row > 0) {
                                 while($get = $select->fetch_array()) {
