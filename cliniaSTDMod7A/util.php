@@ -1,5 +1,6 @@
 <?php
     include("connection.php");
+    session_start();
 	$headerContent = 
 	"<meta charset='utf-8'>
     <link rel='icon' type='image/png' href='images/small_icon.png' />
@@ -32,22 +33,6 @@
     <script src='../js/script.js'></script>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
     ";
-    
-	function alert($text)
-	{
-		echo "<script>alert('$text')</script>";
-	}
-
-    function getSessionInfo() {
-        $username = $_SESSION["user"];
-        $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
-        $row   = $check->num_rows;
-        if($row) {
-            $dados = $check->fetch_array();
-            $id = $dados["ID"];
-            $name = $dados["nome"];
-        }
-    }
 
     $siteData = $mysqli->query("SELECT * FROM site WHERE ID = 1");      
     $siteData = $siteData->fetch_array();
@@ -56,4 +41,32 @@
     $siteDesc   = $siteData["SobreNosTexto"];
     $siteEmail = $siteData["email"];
     $siteTelefone = $siteData["telefone"];
+
+    if(isset($_SESSION["user"])) {
+        $username = $_SESSION["user"];
+        $sessionInfo = $mysqli->query("SELECT * FROM users WHERE username = '$username'");
+        $row   = $sessionInfo->num_rows;
+        if($row) {
+            $dados = $sessionInfo->fetch_array();
+            $nome = $dados["nome"];
+            $mail = $dados["email"];
+            $last_sign = $dados["last_sign"];
+            $permissao = $dados["permissoes"];
+        }
+    }  
+
+    function alert($text)
+    {
+        echo "<script>alert('$text')</script>";
+    }
+
+    function erroForm($message) {
+        echo "
+        <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
+            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
+            <span class='sr-only'>Erro:</span>
+            $message
+        </div>  
+        ";
+    }
 ?>

@@ -5,6 +5,9 @@
     protegerPagina();
     include("sairPagina.php");
     sairPagina();
+    include("../util.php");
+    if($permissao != 1)
+        header('Location: index.php')
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +17,6 @@
         <?=$headerContentPainel?>
         <?php 
             $username = $_SESSION["user"];
-            $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
-            $row   = $check->num_rows;
-            if($row) {
-                $dados = $check->fetch_array();
-                $id = $dados["ID"];
-                $name = $dados["name"];
-            }
         ?>
     </head>
 
@@ -29,27 +25,17 @@
             <?php include("navbarSup.php") ?>
         </section> <!-- #navbar_sup -->
         <section id="content">
+
             <section id="navbar_lat">
                 <?php include("navbarLat.php") ?>
             </section> <!-- /#navbar_lat -->
+            
             <section id="dashboard">
                 <div id="header">   
                     <table>
                         <tr>
-                            <td onclick="csgag()" class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;DASHBORD</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Welcome Back, <?php echo " <b>$name</b>! Your last sig in at $last_sign"?></td>
-                            <td id="button_widget">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default">Widget</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Menu</span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li class="disabled"><a href="#">Coming Soon</a></li>
-                                    </ul>
-                                </div>
-                            </td>
+                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;DASHBORD</td>
+                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Welcome Back, <?php echo " <b>$nome</b>!"?></td>
                         </tr>
                     </table>
                 </div> <!-- #header -->
@@ -66,7 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                                    <i class="fa fa-comments"></i>&nbsp;Contact's
+                                    <i class="fa fa-comments"></i>&nbsp;Contactos
                             </h4> <!-- /.panel-title -->
                         </div> <!-- /.panel-heading -->
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">

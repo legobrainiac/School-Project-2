@@ -28,14 +28,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <?php 
             $username = $_SESSION["user"];
-            $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
-            $row   = $check->num_rows;
-            if($row) {
-                $dados = $check->fetch_array();
-                $id = $dados["ID"];
-                $name = $dados["name"];
-                $permissao = $dados["permissoes"];
-            }
         ?>
     </head>
 
@@ -52,7 +44,7 @@
                     <table>
                         <tr>
                             <td onclick="csgag()" class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;DASHBORD</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$name</b>!"?></td>
+                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$nome</b>!"?></td>
                         </tr>
                     </table>
                 </div> <!-- #header -->
@@ -87,7 +79,7 @@
                                             <th>Morada</th> 
                                             <th>Telemóvel</th>
                                             <th>Redes Sociais</th> 
-                                            <?php if($permissao == 1) {?>
+                                            <?php if($permissao == 1) { ?>
                                                 <th>Permissão</th> 
                                                 <th>Opções</th>
                                             <?php } ?>
@@ -109,23 +101,23 @@
                                                         <td><?=$get["nome"]?></td>
                                                         <td><?=$get["email"]?></td>
                                                         <td><?=$get["dataNascimento"]?></td>
-                                                        <td><?=$get["telemovel"]?></td>
                                                         <td><?=$get["morada"]?></td>
+                                                        <td><?=$get["telemovel"]?></td>
                                                         <td><?=$get["linkFb"]?></td>
-                                                        <td><?=$get["permissoes"]?></td>
+                                                        <?php if($permissao == 1) { ?><td><?=$get["permissoes"]?></td> 
                                                         <td style="text-align: center;">
                                                             <a style="color: #000; text-decoration: none;" href="edit_profile.php?id=<?=$get['ID']?>" title="Edit this profile"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
-                                                            <a onclick="deleteUser('<?=$get["name"]?>', '<?=$get["ID"]?>')" style="color: #000; text-decoration: none;"><i class="fa fa-user-times"></i></a>
-                                                        </td>
+                                                            <a onclick="deleteUser('<?=$get["nome"]?>', '<?=$get["ID"]?>')" style="color: #000; text-decoration: none;"><i class="fa fa-user-times"></i></a>
+                                                        </td><?php } ?>
                                                     </tr>
                                         <?php
                                                     }
                                                 }
                                             } else {
                                         ?>
-                                            <h4> Any registered user. <br/></h4>
+                                            <h4> Nenhum utilizador registado. <br/></h4>
                                             <div>
-                                                <a href="addUser.php">Add one.</a>
+                                                <a href="addUser.php">Adicione um.</a>
                                             </div>
                                         <?php
                                             }
@@ -144,7 +136,7 @@
 
 <script type="text/javascript">
     function deleteUser(name, id) {
-        if(confirm('Are you sure you want to delete the user account ' + name + '?')) {
+        if(confirm('Tem a certeza que pretende eliminar o utilizador ' + name + '?')) {
             window.location = "delete.php?table=users&id="+id;
         }
     }

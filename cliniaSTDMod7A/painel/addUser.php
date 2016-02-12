@@ -5,11 +5,11 @@
     protegerPagina();
     include("sairPagina.php");
     sairPagina();
-    $error = false;
-    include("../functions.php");
+    $haerro = false;
+    include("../util.php");
 
     $valueNome           = isset($_POST["txtNome"]) ? $_POST["txtNome"] : "";
-    $valueUsername       = isset($_POST["txtNome"]) ? $_POST["txtNome"] : "";
+    $valueUsername       = isset($_POST["txtUsername"]) ? $_POST["txtUsername"] : "";
     $valueEmail          = isset($_POST["txtEmail"]) ? $_POST["txtEmail"] : "";
     $valueRua            = isset($_POST["txtRua"]) ? $_POST["txtRua"] : "";
     $valueLocalidade     = isset($_POST["txtLocalidade"]) ? $_POST["txtLocalidade"] : "";
@@ -121,15 +121,10 @@
                                             <label class="col-lg-3 control-label">Nome:</label>
                                             <div class="col-lg-8">
                                                 <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtNome"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Por favor, introduza um nome para o utilizador.
-                                                            </div>  
-                                                        ";
+                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtNome"]))
+                                                    {
+                                                        $haerro = true;
+                                                        erroForm("Por favor, introduza um nome para o utilizador.");
                                                     }
                                                 ?>
                                                 <input class="form-control" placeholder="Nome" type="text" name="txtNome" value="<?=$valueNome?>">
@@ -140,15 +135,10 @@
                                             <label class="col-lg-3 control-label">Email:</label>
                                             <div class="col-lg-8">
                                                 <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtEmail"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Erro:</span>
-                                                            Por favor, introduza um email para o utilizador.
-                                                            </div>  
-                                                        ";
+                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtEmail"]))
+                                                    {
+                                                        $haerro = true;
+                                                        erroForm("Por favor, introduza um email para o utilizador.");
                                                     }
                                                 ?>
                                                 <input class="form-control" placeholder="E-mail" type="email" name="txtEmail" value="<?=$valueEmail?>">
@@ -159,15 +149,10 @@
                                             <label class="col-md-3 control-label">Nome de utilizador:</label>
                                             <div class="col-md-8">
                                                 <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtUsername"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Erro:</span>
-                                                            Por favor, introduza um nome de utilizador.
-                                                            </div>  
-                                                        ";
+                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtUsername"]))
+                                                    {
+                                                        $haerro = true;
+                                                        erroForm("Por favor, introduza um nome de utilizador.");
                                                     }
 
                                                     if(isset($_POST["btnAddUser"]) && !empty($_POST["txtUsername"]) && !empty($_POST["txtEmail"])) {
@@ -196,15 +181,10 @@
                                             <label class="col-md-3 control-label">Password:</label>
                                             <div class="col-md-8">
                                                 <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtPassword"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Erro:</span>
-                                                            Por favor, introduza uma password para o utilizador.
-                                                            </div>  
-                                                        ";
+                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtPassword"]))
+                                                    {
+                                                        $haerro = true;
+                                                        erroForm("Por favor, introduza uma password para o utilizador.");
                                                     }
                                                 ?>
                                                 <input class="form-control" placeholder="11111122333" type="password" name="txtPassword">
@@ -215,16 +195,10 @@
                                             <label class="col-md-3 control-label">Confirme a password:</label>
                                             <div class="col-md-8">
                                                 <?php
-                                                    if(isset($_POST["btnAddUser"]) && ($_POST["txtPassword"] != $_POST["txtConfPass"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-warning' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-warning-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Erro:</span>
-                                                            As duas password's não coincidem.<br/>
-                                                            Por razões de segurança, elas devem ser iguais...
-                                                            </div>  
-                                                        ";
+                                                    if(isset($_POST["btnAddUser"]) && ($_POST["txtPassword"] != $_POST["txtConfPass"]))
+                                                    {
+                                                        $haerro = true;
+                                                        erroForm("As duas password's não coincidem.<br/>Por razões de segurança, elas devem ser iguais...");
                                                     }
                                                 ?>
                                                 <input class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" type="password" name="txtConfPass">
@@ -235,15 +209,10 @@
                                             <label class="col-md-3 control-label">Morada:</label>
                                             <div class="col-md-8">
                                                 <?php
-                                                    if(isset($_POST["btnAddUser"]) && (empty($_POST["txtRua"]) || empty($_POST["txtLocalidade"]) || empty($_POST["txtCodigoPostal"]))) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Erro:</span>
-                                                            Por favor, introduza a morada do utilizador.
-                                                            </div>  
-                                                        ";
+                                                    if(isset($_POST["btnAddUser"]) && (empty($_POST["txtRua"]) || empty($_POST["txtLocalidade"]) || empty($_POST["txtCodigoPostal"])))
+                                                    {
+                                                        $haerro = true;
+                                                        erroForm("Por favor, introduza a morada do utilizador.");
                                                     }
                                                 ?>
                                                 <input class="form-control" placeholder="Rua" type="text" name="txtRua" style="margin-bottom:10px;" value="<?=$valueRua?>">
@@ -263,31 +232,29 @@
                                             <label class="col-md-3 control-label">Data de Nascimento:</label>
                                             <div class="col-md-8">
                                                 <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtDataNascimento"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Erro:</span>
-                                                            Por favor, introduza uma data de nascimento para o utilizador.
-                                                            </div>  
-                                                        ";
+                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtDataNascimento"]))
+                                                    {
+                                                        $haerro = true;
+                                                        erroForm(" Por favor, introduza uma data de nascimento para o utilizador.");
                                                     }
                                                 ?>
                                                 <input class="form-control" type="date" name="txtDataNascimento" value="<?=$valueDataNascimento?>">
                                             </div> <!-- .col-lg-8 -->
                                         </div> <!-- .form-group -->
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Permissões:</label>
-                                            <div class="col-md-8">
-                                                <select name="txtPermissoes" class="form-control">
-                                                    <option value="1">Administrador</option>
-                                                    <option value="2">Editor</option>
-                                                    <option value="3">Cliente</option>
-                                                </select>
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
+                                        <?php
+                                            if($permissao == 1) { ?>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Permissões:</label>
+                                                    <div class="col-md-8">
+                                                        <select name="txtPermissoes" class="form-control">
+                                                            <option value="1">Administrador</option>
+                                                            <option value="2">Editor</option>
+                                                            <option value="3">Cliente</option>
+                                                        </select>
+                                                    </div> <!-- .col-lg-8 -->
+                                                </div> <!-- .form-group -->
+                                            <?php } ?>
 
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">Facebook URL:</label>
@@ -318,8 +285,8 @@
     </body>
 </html>
 
-<?php 
-    if(isset($_POST["btnAddUser"]) && !$error) {
+<?php
+    if(isset($_POST["btnAddUser"]) && !$haerro) {
         $usernameIns    = $_POST["txtUsername"];
         $passwordIns    = sha1(sha1(md5(sha1($_POST["txtPassword"])))); 
         $nameIns        = $_POST["txtNome"];
@@ -329,7 +296,6 @@
         $permissionIns  = $_POST["txtPermissoes"];
         $telemovelIns   = $_POST["txtTelemovel"];
         $linkFbIns      = $_POST["txtLinkFb"];
-        
         $query2 = $mysqli->query("INSERT INTO users(username, password, email, nome, DataNascimento, morada, telemovel, linkFb, permissoes, ativo) VALUES ('$usernameIns', '$passwordIns', '$emailIns', '$nameIns', '$birthdayIns', '$moradaIns', '$telemovelIns', '$linkFbIns', '1','1')");
         if($query2)
             alert("Utilizador Registado!");

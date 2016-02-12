@@ -59,14 +59,14 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                                    <i class="fa fa-cog"></i>&nbsp;Settings
+                                    <i class="fa fa-cog"></i>&nbsp;Definições
                             </h4> <!-- /.panel-title -->
                         </div> <!-- /.panel-heading -->
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
                                 <form class="form-horizontal" style="font-size:12pt; color: #23282d" action="" method="POST">
                                   <div class="form-group">
-                                    <label for="siteTitle" class="col-sm-2 control-label"><b>Site Title:</b></label>
+                                    <label for="siteTitle" class="col-sm-2 control-label"><b>Titulo do Site:</b></label>
                                     <div class="col-sm-10">
                                       <input type="text" class="form-control" id="siteTitle" name="txtSiteTitle" value="<?=$siteTitle?>">
                                     </div>
@@ -78,18 +78,9 @@
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <label for="AdminEmail" class="col-sm-2 control-label"><b>Admin Email:</b></label>
+                                    <label for="AdminEmail" class="col-sm-2 control-label"><b>Email Administração:</b></label>
                                     <div class="col-sm-10">
                                       <input type="email" class="form-control" id="AdminEmail" name="txtAdminEmail" value="<?=$siteEmail?>">
-                                    </div>
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="language" class="col-sm-2 control-label"><b>Site Language:</b></label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" name="optLanguage" id="language">
-                                            <option value="en">English</option>
-                                            <option value="pt">Português</option>
-                                        </select>
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -97,22 +88,17 @@
                                     <div class="col-sm-10">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="chkMaintenance" id="maintenance"> The site is down for maintenance!
+                                            <input type="checkbox" name="chkMaintenance" id="maintenance"> Site em manutenção
                                         </label>
                                     </div>
                                     </div>
                                   </div>
                                   <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                      <button type="submit" class="btn btn-success" name="btnSaveChanges">Save Changes</button>
+                                      <button type="submit" class="btn btn-success" name="btnSaveChanges">Guardar Alterações</button>
                                     </div>
                                   </div>
                                 </form>
-
-                                <div id="author" class="col-md-4" style="margin-top:50px">
-                                    André Santos, 2015/16.<br/>
-                                    andrefilsantos@gmail.com
-                                </div>
                                 <div id="panelVersion" class="pull-right" style="margin-top:50px">
                                     Version <b>2.0</b>
                                 </div>

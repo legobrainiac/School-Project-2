@@ -15,13 +15,6 @@
         <?=$headerContentPainel?>
         <?php
             $username = $_SESSION["user"];
-            $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
-            if($check->num_rows) {
-                $dados = $check->fetch_array();
-                $id = $dados["ID"]; 
-                $name = $dados["nome"];
-                $last_sign = $dados["last_sign"];
-            }
             $this_sign = date('d/m/Y'). " às ". (date('H') == 00 ? '23' : date('H')-1). date(':i');
             $last_s = $mysqli->query("UPDATE users SET last_sign = '$this_sign' WHERE username = '$username';");
         ?>
@@ -40,7 +33,7 @@
                     <table>
                         <tr>
                             <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Painel de Controlo</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$name</b>! A última vez que iniciou sessão foi no dia $last_sign"?></td>
+                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$nome</b>! A última vez que iniciou sessão foi no dia $last_sign"?></td>
                         </tr>
                     </table>
                 </div>
@@ -56,7 +49,8 @@
                 	?>
 		                    <div class="alert alert-success alert-dismissible fade in" role="alert">
 		                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		                      Welcome to new Ahiru Productions Control Panel. We are introducing a lot of new function to simplifying our life. Discover them!
+                              Bem-Vindo ao portal +STD!<br/>
+                              Temos imensas funcionalidades à sua espera, que simplificaram a sua vida.
 		                    </div>
                     <?php } ?>
 

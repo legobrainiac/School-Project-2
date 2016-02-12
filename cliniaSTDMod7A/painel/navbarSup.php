@@ -72,7 +72,7 @@
     <span id="p2">
         <span id="image_user"><img id="image_user" class="teste" src="../images/<?php echo $username ?>.jpg"></span>
         <span class="dropdown">
-            <span id="user" class="dropdown-tooggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Olá,<?php echo " <b>$name</b>"?> <span class="caret"></span></span>
+            <span id="user" class="dropdown-tooggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Olá,<?php echo " <b>$nome</b>"?> <span class="caret"></span></span>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a href="edit_profile.php?id=<?php echo $id ?>"><span class="glyphicon glyphicon-user"></span>&nbsp;O meu perfil</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;Definições da conta</a></li>
