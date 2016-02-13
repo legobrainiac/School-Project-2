@@ -3,17 +3,6 @@
     <a href="index.php"><img src="../images/+std_logo.png" width="110px"></a>
 </span>
 <span id="cp">Painel de Controlo</span>
-<span id="icons">
-    <span class="messages" style="font-size: 13pt">
-        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-    </span>
-    <span class="alerts" style="font-size: 13pt">
-        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-    </span>
-    <span class="help" style="font-size: 13pt">
-        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-    </span>
-</span>
 <span id="right">
     <span id="p1" style="text-align: right">
     <?php 
