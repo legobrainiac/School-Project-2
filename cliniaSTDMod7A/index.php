@@ -78,21 +78,19 @@
             </div>
             <div id="featured_projects" class="col-md-4" style="margin-bottom:50px;">
                 <h4>Rede de Clínicas</h4>
-                    <img src="images/clinicas.png" style="margin-bottom: 10px;" class="miniAppIMG">
+                <a href=""><img src="images/clinicas.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
                 <h4>Médicos</h4>
-                <img src="images/medicos.png" style="margin-bottom: 10px;" class="miniAppIMG">
+                <a href="sobre.php#team"><img src="images/medicos.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
                 <h4>Mais STD</h4>
-                <img src="images/+std.png" style="margin-bottom: 10px;" class="miniAppIMG">
+                <a href="painel/index.php"><img src="images/+std.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
             </div>
         </section>
     </section>
     
     <section id="message">
-        <a href=""><img src="http://schoolweb.tdsb.on.ca/Portals/soes/images/Form%20icon.png" align="right" height="150px" width="150px">
-        <h1><b>Do you Like</b>? Give us your <b>feedback</b>.</h1></a>
-        <p>Your feedback is very important to us!<br />
-        Fill out our form. Say what you think and give suggestions. We read everything! <br />
-        Come on, we trust you!</p>
+        <a href="contactos.php"><img src="http://schoolweb.tdsb.on.ca/Portals/soes/images/Form%20icon.png" align="right" height="150px" width="150px">
+        <h1><b>Melhorava alguma coisa</b>? Diga-nos o quê!</h1></a>
+        <p>Diariamente, servimos milhares de pessoas nas nossas clinicas e o nosso objetivo é sempre o mesmo: dar o melhor de nós para o servir sempre melhor. <br /> E, por isso, gostamos de ouvir as suas opiniões e/ou sugestões. Deixe-a na nossa página <i>Contactos</i> e nos analisá-la-emos!</p>
     </section>
 
     <footer>

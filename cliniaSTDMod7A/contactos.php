@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="pt">
   <head>
-    <title>Contact > <?=$siteTitle . " | " . $siteSlogan?></title>
+    <title>Contactos > <?=$siteTitle . " | " . $siteSlogan?></title>
     <?=$headerContent?>
     <script type="text/javascript">
         $(function(){
@@ -111,16 +111,14 @@
         $subject       = $_POST["txtSubject"];
         $message       = $_POST["txtMessage"];
         $wantContacted = $_POST["chkContact"];
-        $date          = date('Y/m/d');
-
+        $date          = date('Y-m-d');
         if(!$wantContacted) $wantContacted = 'false';
         if($wantContacted == 'true') {$wantContacted = true;} elseif($wantContacted == 'false') {$wantContacted = false;}
 
-        $query = $mysqli->query("INSERT INTO contact (name, email, subject, message, date, wantContacted, contacted) VALUES ('$name', '$email', '$subject', '$message', '$date', '$wantContacted', false)");
-
+        $query = $mysqli->query("INSERT INTO contactos(nome, email, assunto, mensagem, data, querSerContactado, contactada) VALUES ('$name', '$email', '$subject', '$message', '$date', '$wantContacted', false)");
         if($query)
-            echo "<script> alert('Message sent successfully!');</script>";
+            echo "<script> alert('Messagem enviada com sucesso!');</script>";
         else
-            echo "<script> alert('Error sending message. \n Please try again later.'); </script>";
+            echo "<script> alert('Erro ao enviar a mensagem. \n Por favor, tente de novo...'); </script>";
     }
 ?>

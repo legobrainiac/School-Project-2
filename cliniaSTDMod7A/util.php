@@ -3,7 +3,7 @@
     session_start();
 	$headerContent = 
 	"<meta charset='utf-8'>
-    <link rel='icon' type='image/png' href='images/small_icon.png' />
+    <link rel='icon' type='image/png' href='favSTD.png' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='description' content='Web Design, Software and Game Development'>
@@ -19,7 +19,7 @@
 
     $headerContentPainel =
     "<meta charset='utf-8'>
-    <link rel='icon' type='image/png' href='../images/small_icon.png' />
+    <link rel='icon' type='image/png' href='../images/fav+STD.png' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='description' content='Web Design, Software and Game Development'>
@@ -41,7 +41,15 @@
     $siteDesc   = $siteData["SobreNosTexto"];
     $siteEmail = $siteData["email"];
     $siteTelefone = $siteData["telefone"];
-
+    $manutencao =  $siteData["manutencao"];
+    $visitas = $siteData["visitas"];
+    $sobre = $siteData["SobreNosTexto"];
+    $visitas++;
+    $updateVisitas = $mysqli->query("UPDATE site SET visitas = '$visitas' WHERE ID = 1");
+    if($manutencao) {
+        if(!isset($_SESSION["user"]))
+            echo "<script>location.href='maintenance.php'</script>";
+    }
     if(isset($_SESSION["user"])) {
         $username = $_SESSION["user"];
         $sessionInfo = $mysqli->query("SELECT * FROM users WHERE username = '$username'");

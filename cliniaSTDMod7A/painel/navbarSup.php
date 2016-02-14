@@ -63,7 +63,6 @@
             <span id="user" class="dropdown-tooggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Olá,<?php echo " <b>$nome</b>"?> <span class="caret"></span></span>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a href="edit_profile.php?id=<?php echo $id ?>"><span class="glyphicon glyphicon-user"></span>&nbsp;O meu perfil</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;Definições da conta</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="?func=sairPagina"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Terminar Sessão</a></li>
           </ul>

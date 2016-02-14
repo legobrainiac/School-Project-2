@@ -6,6 +6,7 @@
     include("sairPagina.php");
     sairPagina();
     include("../util.php");
+    $nomePagina = "Todos os Utilizadores";
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,7 @@
                         <li><span class="glyphicon glyphicon-home"></span></li>
                         <li><a href="index.php">Home</a></li>
                         <li><a href="allUsers.php">Utilizadores</a></li>
-                        <li class="active">Todos os Utilizadores</li>
+                        <li class="active"><?=$nomePagina?></li>
                     </ol>
                 </div> <!-- path -->
 
@@ -49,7 +50,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                                    <i class="fa fa-users"></i>&nbsp;Todos os Utilizadores
+                                    <i class="fa fa-users"></i>&nbsp;<?=$nomePagina?>
                             </h4>
                         </div> <!-- /.panel-heading -->
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -66,7 +67,6 @@
                                             <th>Data de Nascimento</th> 
                                             <th>Morada</th> 
                                             <th>Telemóvel</th>
-                                            <th>Redes Sociais</th> 
                                             <?php if($permissao == 1) { ?>
                                                 <th>Permissão</th> 
                                                 <th>Opções</th>
@@ -91,7 +91,6 @@
                                                         <td><?=$get["dataNascimento"]?></td>
                                                         <td><?=$get["morada"]?></td>
                                                         <td><?=$get["telemovel"]?></td>
-                                                        <td><?=$get["linkFb"]?></td>
                                                         <?php if($permissao == 1) { ?><td><?=$get["permissoes"]?></td> 
                                                         <td style="text-align: center;">
                                                             <a style="color: #000; text-decoration: none;" href="edit_profile.php?id=<?=$get['ID']?>" title="Edit this profile"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;

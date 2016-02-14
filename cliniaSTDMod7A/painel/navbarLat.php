@@ -1,6 +1,6 @@
 <ul id="accordion" class="accordion">
     <li>
-        <a href="../index.php"><div class="link" title="Homepage"><img src="../images/small_icon_white.png" style="widht: 17px; height: 17px; margin-left: -16px;" class="fa" /><label class="dsblb">STD Psiquiatria</label></div></a>
+        <a href="../index.php"><div class="link" title="Homepage"><img src="../images/stdBranco.png" style="widht: 17px; height: 17px; margin-left: -16px;" class="fa" /><label class="dsblb">STD Psiquiatria</label></div></a>
     </li>
     <li>
         <a href="index.php"><div class="link" title="Dashboard"><i class="fa fa-home"></i><label class="dsblb">Página Principal</label></div></a>

@@ -1,4 +1,4 @@
-<?php
+	<?php
 	include("connection.php");
 	include("util.php");
 	error_reporting(false);	

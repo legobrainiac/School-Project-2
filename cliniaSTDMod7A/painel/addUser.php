@@ -63,7 +63,7 @@
                     <table>
                         <tr>
                             <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Painel de Controlo</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$name</b>!"?></td>
+                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$nome</b>!"?></td>
                         </tr>
                     </table>
                 </div> <!--/#header-->
@@ -88,7 +88,7 @@
                             <div class="panel-body">
                                 <div style="text-align: center" class="col-md-3">
                                     <img src="../images/admin.jpg" class="img-circle img-profile_sqrt" id="newprofilephoto" />
-                                    <br /><h6>Carregar Foto...</h6>
+                                    <br /><h6 id="bottomImg">Carregar Foto...</h6>
 
                                     <div class="row">
                                         <div class="input-group">
@@ -104,7 +104,8 @@
                                                             var file = this.value;
                                                             var path = file;
                                                             document.getElementById("uploadFile").value = file;
-                                                            document.getElementById("newprofilephoto").src = "../images/$name.jpg";
+                                                            document.getElementById("newprofilephoto").src = "../images/uploadTOcomplete.gif";
+                                                            document.getElementById("bottomImg").innerHTML = "Não se esqueça de guardar as alterações..."
                                                         };
                                                     </script>
                                                 </span> <!-- /#up_txt -->
@@ -321,7 +322,7 @@
                     $file_name_new = uniqid('', true) . '.' . $file_ext;
                     $file_destination = "../images/$usernameIns.jpg";
                     if (move_uploaded_file($file_tmp, $file_destination)) {
-                        echo $file_destination;
+                        //echo $file_destination;
                     }
 
                 }

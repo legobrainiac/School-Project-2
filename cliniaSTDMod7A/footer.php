@@ -1,7 +1,7 @@
 <div id="footerTop">
     <div id="about" class="col-md-5">
-        <h2>About Us</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <h2>Sobre Nós</h2>
+        <?=$sobre?>
     </div>
     <div id="Twitter" class="col-md-3">
         <h2>Twitter</h2>
@@ -11,10 +11,12 @@
         </p>
     </div>
     <div id="contact" class="col-md-2">
-        <h2>Meta</h2>
-        <ul>
-            <li>Login</li>
-            <li>Settings</li>
+        <h2>As nossas clinicas</h2>
+        <ul style="list-style: none; margin-left: -35px">
+            <li>STD Lisboa</li>
+            <li>STD Porto</li>
+            <li>STD Coimbra</li>
+            <li>STD Faro</li>
         </ul>
     </div>
     <div id="clearBoth">
@@ -25,11 +27,10 @@
     Copyrights &copy; 2015, Ahiru Productions
     <div id="social" class="pull-right">
         <ul>
-            <a href="http://www.facebook.com/ahiruproductions" target="_blank"><li class="facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></li></a>
-            <a href="https://twitter.com/search/%23ahiruproductions" target="_blank"><li class="twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></li></a>
-            <a href="#" target="_blank"><li class="github" data-toggle="tooltip" data-placement="top" title="GitHub"></li></a>
-            <a href="#" target="_blank"><li class="youtube" data-toggle="tooltip" data-placement="top" title="YouTube"></li></a>
-            <a href="mailto:general@ahiruproductions.com"><li class="mail" data-toggle="tooltip" data-placement="top" title="Mail"></li></a>
+            <a href="https://www.facebook.com/" target="_blank"><li class="facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></li></a>
+            <a href="https://twitter.com/" target="_blank"><li class="twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></li></a>
+            <a href="https://www.youtube.com/" target="_blank"><li class="youtube" data-toggle="tooltip" data-placement="top" title="YouTube"></li></a>
+            <a href="mailto:geral@stdpsiquiatria.pt"><li class="mail" data-toggle="tooltip" data-placement="top" title="Mail"></li></a>
             <script>
                 $(function () {
                   $('[data-toggle="tooltip"]').tooltip()

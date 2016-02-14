@@ -31,6 +31,55 @@
                 document.getElementById("imgFotoClinica").src = "images/slide1.png";
 
         }
+
+        function putActive() {
+            var value = document.getElementById("optEspecialidade").options[document.getElementById("optEspecialidade").selectedIndex].value;
+            switch(value) {
+                case 'psiquiatria':
+                    $('#medPsicologia').attr('disabled', true);
+                    $('#medNeurologia').attr('disabled', true);
+                    $('#medPsiquiatria').attr('disabled', false);
+                    break;
+                case 'psicologia':
+                    $('#medPsiquiatria').attr('disabled', true);
+                    $('#medNeurologia').attr('disabled', true);
+                    $('#medPsicologia').attr('disabled', false);
+                    //$('.onporto').attr('disabled', true);
+                    break;
+                case 'neurologia':
+                    $('#medPsiquiatria').attr('disabled', true);
+                    $('#medPsicologia').attr('disabled', true);
+                    $('#medNeurologia').attr('disabled', false);
+                    break;
+            }
+
+            var unidade = document.getElementById("cboClinicas").options[document.getElementById("cboClinicas").selectedIndex].value;
+
+            if(unidade == "porto"){
+                $('.onlisboa').attr('disabled', true);
+                $('.oncoimbra').attr('disabled', true);
+                $('.onfaro').attr('disabled', true);
+                $('.onporto').attr('disabled', false);
+            }
+            else if(unidade == "coimbra") {
+                $('.onlisboa').attr('disabled', true);
+                $('.onporto').attr('disabled', true);
+                $('.onfaro').attr('disabled', true);
+                $('.oncoimbra').attr('disabled', false);
+            }
+            else if(unidade == "faro"){
+                $('.onlisboa').attr('disabled', true);
+                $('.oncoimbra').attr('disabled', true);
+                $('.onporto').attr('disabled', true);
+                $('.onfaro').attr('disabled', false); 
+            }
+            else {
+                $('.onfaro').attr('disabled', true);
+                $('.oncoimbra').attr('disabled', true);
+                $('.onporto').attr('disabled', true);
+                $('.onlisboa').attr('disabled', false);
+            }
+        }
     </script>
   </head>
 
@@ -64,37 +113,68 @@
                 <input type="text" placeholder="Email" name="txtEmail" class="form-control" id="email">
             </div>
 
-            <div class="form-group col-md-6">
-                <form class="form-horizontal" method="POST" action="" name="frmEspecialidade">
-                    <label for="optOrderBy" class="col-sm-2 control-label"><b>Especialidade:</b></label>
-                        <select class="form-control" onchange="javascript:frmEspecialidade.submit()" name="optEspecialidade">
-                            <option value="psiquiatria">Psiquiatria</option>
-                            <option value="psicologia">Psicologia</option>
-                            <option value="neurologia">Neurologia</option>
+            <div class="form-group">
+                <label for="optOrderBy"><b>Especialidade:</b></label>
+                <select class="form-control" onchange="putActive()" id="optEspecialidade">
+                    <option value="psiquiatria">Psiquiatria</option>
+                    <option value="psicologia">Psicologia</option>
+                    <option value="neurologia">Neurologia</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                 <form class="form-horizontal" method="POST" action="" name="formOrderBy">
+                    <label for="optOrderBy"><b>Medico:</b></label>
+                        <select class="form-control" name="optMedico">
+                            <optgroup label="Psiquiatria" id="medPsiquiatria">
+                                <?php 
+                                    $medicos = $mysqli->query("SELECT * FROM medicos WHERE Especialidade='Psiquiatria'");
+                                    while($nomes = $medicos->fetch_array()) {
+                                ?> 
+                                    <option class="on<?=strtolower($nomes['unidade'])?>"><?=$nomes["Nome"]?></option>
+                                <?php } ?>
+                            </optgroup>
+
+                            <optgroup label="Psicologia" id="medPsicologia">
+                                <?php 
+                                    $medicos = $mysqli->query("SELECT * FROM medicos WHERE Especialidade='Psicologia'");
+                                    while($nomes = $medicos->fetch_array()) {
+                                ?> 
+                                    <option class="on<?=strtolower($nomes['unidade'])?>"><?=$nomes["Nome"]?></option>
+                                <?php } ?>
+                            </optgroup>
+
+                            <optgroup label="Neurologia" id="medNeurologia">
+                                <?php 
+                                    $medicos = $mysqli->query("SELECT * FROM medicos WHERE Especialidade='Neurologia'");
+                                    while($nomes = $medicos->fetch_array()) {
+                                ?> 
+                                    <option class="on<?=strtolower($nomes['unidade'])?>"><?=$nomes["Nome"]?></option>
+                                <?php } ?>
+                            </optgroup>
                         </select>
                 </form>
             </div>
 
-            <div class="form-group col-md-6">
-                <label for="clinica">Médico:</label>
-                <select class="form-control" id="optMedico">
-                    <?php
-                        $order = "psicologia";
-                            if(isset($_POST['optEspecialidade'])) {
-                                if($_POST['optEspecialidade'] == 'psiquiatria')
-                                    $order = 'psiquiatria';
-                                elseif($_POST['optEspecialidade'] == 'psicologia')
-                                    $order = 'psicologia';
-                                elseif($_POST['optEspecialidade'] == 'neurologia')
-                                    $order = 'neurologia';
-                            }
-                            alert('order: $order');
-                            $select = $mysqli->query("SELECT * FROM medicos WHERE Especialidade = '$order'");
-                            $row = $select->num_rows;
-                                while($get = $select->fetch_array()) {
-                        ?>
-                                    <option><?=$dados["Nome"]?></option>
-                        <?php } ?>
+            <div class="form-group col-md-4">
+                <label for="optOrderBy"><b>Data da Consulta:</b></label>
+                <input type="date" class="form-control"></input>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="optOrderBy"><b>Hora da Consulta:</b></label>
+                <select class="form-control" id="optHoraConsulta">
+                    <option value="8:25">08:25-09:10</option>
+                    <option value="9:10">09:10-09:55</option>
+                    <option value="10:10">10:10-10:55</option>
+                    <option value="">10:55-11:40</option>
+                    <option>11:55-12:35</option>
+                    <option>12:35-13:20</option>
+                    <option>13:25-14:10</option>
+                    <option>14:10-14:55</option>
+                    <option>15:05-15:50</option>
+                    <option>15:50-16:35</option>
+                    <option>16:50-17:35</option>
                 </select>
             </div>
 

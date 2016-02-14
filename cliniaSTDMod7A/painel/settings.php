@@ -101,13 +101,14 @@
 
 <?php 
     if(isset($_POST["btnSaveChanges"])) {
-        $titleIns  = $_POST["txtSiteTitle"];
-        $sloganIns = $_POST["txtSlogan"];
-        $emailIns  = $_POST["txtAdminEmail"];
-
+        $titleIns     = $_POST["txtSiteTitle"];
+        $sloganIns    = $_POST["txtSlogan"];
+        $emailIns     = $_POST["txtAdminEmail"];
+        $maintenance  = $_POST["chkMaintenance"];
         if($titleIns  != $siteTitle) $mudarNome = $mysqli->query("UPDATE site SET nome = '$titleIns' WHERE ID = 1");
         if($sloganIns != $siteSlogan) $mudarSlogan =  $mysqli->query("UPDATE site SET slogan = '$sloganIns' WHERE ID = 1");
         if($emailIns != $siteEmail) $mudarEmail = $mysqli->query("UPDATE site SET email = '$emailIns' WHERE ID = 1");
+        if(isset($_POST["chkMaintenance"])) $mudarManutencao = $mysqli->query("UPDATE site SET manutencao = 1 WHERE ID = 1");
 
         if(isset($mudarNome) || isset($mudarEmail) || isset($mudarSlogan)) {
             alert("Alterações efetuadas com sucesso!");

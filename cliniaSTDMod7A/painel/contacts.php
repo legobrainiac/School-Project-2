@@ -62,32 +62,32 @@
                                     <thead> 
                                         <tr> 
                                             <th>#</th> 
-                                            <th>Name</th>
+                                            <th>Nome</th>
                                             <th>Email</th> 
-                                            <th>Subject</th> 
-                                            <th>Message</th>
-                                            <th>Date</th> 
-                                            <th>Want us to call?</th> 
-                                            <th>Contacted</th>
+                                            <th>Assunto</th> 
+                                            <th>Mensagem</th>
+                                            <th>Data</th> 
+                                            <th>Quer ser contactado?</th> 
+                                            <th>Contactado?</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $i = 0;
-                                            $select = $mysqli->query("SELECT * FROM contact ORDER BY ID ASC");
+                                            $select = $mysqli->query("SELECT * FROM contactos ORDER BY ID ASC");
                                             $row = $select->num_rows;
                                             if($row > 0) {
                                                 while($get = $select->fetch_array()) {
                                         ?>
-                                                    <tr <?php if($get["wantContacted"] == 1 && $get["contacted"] == 0) echo "class='danger'"; elseif ($get["wantContacted"] == 1 && $get["contacted"] == 1) echo "class='success'"; elseif($get["contacted"] == 1) echo "class='info'";?>> 
+                                                    <tr <?php if($get["querSerContactado"] == 1 && $get["contactada"] == 0) echo "class='danger'"; elseif ($get["querSerContactado"] == 1 && $get["contactada"] == 1) echo "class='success'"; elseif($get["contactada"] == 1) echo "class='info'";?>> 
                                                         <th scope="row"><?=$get["ID"]?></th>
-                                                        <td><?=$get["name"]?></td>
+                                                        <td><?=$get["nome"]?></td>
                                                         <td><?=$get["email"]?></td>
-                                                        <td><?=$get["subject"]?></td>
-                                                        <td><?=$get["message"]?></td>
-                                                        <td><?=$get["date"]?></td>
-                                                        <td><?php if($get["wantContacted"] == 0) echo "No"; else echo "Yes";?></td>
-                                                        <td><?php if($get["contacted"] == 0) echo "No"; else echo "Yes";?></td>
+                                                        <td><?=$get["assunto"]?></td>
+                                                        <td><?=$get["mensagem"]?></td>
+                                                        <td><?=$get["data"]?></td>
+                                                        <td><?php if($get["querSerContactado"] == 0) echo "No"; else echo "Yes";?></td>
+                                                        <td><?php if($get["contactada"] == 0) echo "No"; else echo "Yes";?></td>
                                                     </tr>
                                         <?php
                                                 }
