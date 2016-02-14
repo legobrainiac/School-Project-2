@@ -5,29 +5,16 @@
     protegerPagina();
     include("sairPagina.php");
     sairPagina();
-    $error = false;
+    include("../util.php");
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title> All User's > Control Panel > Ahriru Productions </title>
-        <link rel="icon" type="image/png" href="../images/small_icon.png" /> 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style_panel.css" rel="stylesheet">
-        <link href="http://getbootstrap.com/examples/offcanvas/offcanvas.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <script src="../js/script.js"></script>
-        <script src="http://getbootstrap.com/examples/offcanvas/offcanvas.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <?php 
-            $username = $_SESSION["user"];
+            echo $headerContentPainel;
+            $username = $_SESSION["user"]; 
         ?>
     </head>
 
@@ -43,7 +30,7 @@
                 <div id="header">   
                     <table>
                         <tr>
-                            <td onclick="csgag()" class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;DASHBORD</td>
+                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Painel de Controlo</td>
                             <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$nome</b>!"?></td>
                         </tr>
                     </table>
@@ -67,6 +54,7 @@
                         </div> <!-- /.panel-heading -->
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                             <div class="panel-body">
+                                <a href="adduser.php" title="Adicionar Urilizador"><button class="pull-right btn btn-success"><i class="fa fa-user-plus"></i>&nbsp;Adicionar Utilizador</button></a>
                                 <table class="table table-striped"> 
                                     <thead> 
                                         <tr> 

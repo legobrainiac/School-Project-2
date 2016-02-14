@@ -5,21 +5,17 @@
     protegerPagina();
     include("sairPagina.php");
     sairPagina();
+    include("../util.php");
+    $nomePagina = "Editar Perfil";
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Editar Perfil > +STD > STD Psiquitria </title>
+        <title> <?php echo "$nomePagina > +STD > $siteTitle"; ?></title>
         <?=$headerContentPainel?>
         <?php 
             $username = $_SESSION["user"];
-            $check = $mysqli->query("SELECT * FROM users WHERE username='$username'");
-            $row   = $check->num_rows;
-            if($row) {
-                $dadosSession = $check->fetch_array();
-                $name = $dadosSession["nome"];
-            }
 
             $id = $_GET['id'];
             $check = $mysqli->query("SELECT * FROM users WHERE ID = '$id'");
@@ -30,11 +26,23 @@
                 $_password = $dados["password"];
                 $_name = $dados["nome"];
                 $_mail = $dados["email"];
-                $_morada = $dados["morada"];
+                $_morada = preg_split("<br />", $dados["morada"]);
                 $_dataNascimento = $dados["dataNascimento"];
                 $_telemovel = $dados["telemovel"];
                 $_linkFb = $dados["linkFb"];
             }
+
+            $chars = array("<",">");
+
+            $valueNome           = isset($_POST["txtNome"]) ? $_POST["txtNome"] : $_name;
+            $valueUsername       = isset($_POST["txtUsername"]) ? $_POST["txtUsername"] : $_username;
+            $valueEmail          = isset($_POST["txtEmail"]) ? $_POST["txtEmail"] : $_mail;
+            $valueRua            = isset($_POST["txtRua"]) ? $_POST["txtRua"] : str_replace($chars, "", $_morada[0]);
+            $valueLocalidade     = isset($_POST["txtLocalidade"]) ? $_POST["txtLocalidade"] : str_replace($chars, "", $_morada[1]);
+            $valueCodPostal      = isset($_POST["txtCodigoPostal"]) ? $_POST["txtCodigoPostal"] : str_replace($chars, "", $_morada[2]);
+            $valueTelemovel      = isset($_POST["txtTelemovel"]) ? $_POST["txtTelemovel"] : $_telemovel;
+            $valueDataNascimento = isset($_POST["txtDataNascimento"]) ? $_POST["txtDataNascimento"] : $_dataNascimento;
+            $valueLinkFb         = isset($_POST["txtLinkFb"]) ? $_POST["txtLinkFb"] : $_linkFb;
         ?>
     </head>
 
@@ -50,8 +58,8 @@
                 <div id="header">   
                     <table>
                         <tr>
-                            <td onclick="csgag()" class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;DASHBORD</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$_name</b>!"?></td>
+                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Painel de Controlo</td>
+                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$nome</b>!"?></td>
                         </tr>
                     </table>
                 </div>
@@ -60,14 +68,14 @@
                         <li><span class="glyphicon glyphicon-home"></span></li>
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Utilizadores</a></li>
-                        <li class="active">Editar Utilizadores</li>
+                        <li class="active"><?=$nomePagina;?></li>
                     </ol>
                 </div>
                 <div class="panel-group alert fade in" id="accordion" role="tablist" aria-multiselectable="true">
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                       <h4 class="panel-title">
-                      EDITAR PERFIL
+                      <?=$nomePagina;?>
                         <button style="font-size: 11pt" type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true"><i class="fa fa-times"></i></span>
                         </button>
@@ -80,254 +88,196 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                      <div class="panel-body">
-                                <div style="text-align: center" class="col-md-3">
-                                    <img src="../images/<?=$_username?>.jpg" class="img-circle img-profile_sqrt" id="newprofilephoto" />
-                                    <br /><h6 id="bottomImage">Upload photo...</h6>
+                        <div style="text-align: center" class="col-md-3">
+                            <img src="../images/<?=$_username?>.jpg" class="img-circle img-profile_sqrt" id="newprofilephoto" />
+                            <br /><h6 id="bottomImage">Upload photo...</h6>
 
-                                    <div class="row">
-                                        <div class="input-group">
-                                            <input type="text" id="uploadFile" disabled="disabled" class="form-control" placeholder="Browse...">
-                                            <span class="input-group-btn">
-                                                <span class="fileUpload btn btn-primary">
-                                                <span id="up_txt">Upload</span>
-                                                    <form method="POST" action="" enctype="multipart/form-data">
-                                                    <input id="uploadBtn" type="file" class="upload" name="imgPerfil"/>
-                                                    <!--<input type="file" name="file">-->
-                                                    <script type="text/javascript">
-                                                        document.getElementById("uploadBtn").onchange = function () {
-                                                            var file = this.value;
-                                                            var path = file;
-                                                            document.getElementById("uploadFile").value = file;
-                                                            document.getElementById("newprofilephoto").src = "../images/uploadTOcomplete.gif";
-                                                            document.getElementById("bottomImage").innerHTML = "<b>Don't forget</b>: Save the changes ...";
-                                                        };
-                                                    </script>
-                                                </span> <!-- /#up_txt -->
-                                            </span> <!-- /.input-group-btn -->
-                                        </div> <!-- input-group -->
-                                    </div> <!-- /.row -->
-                                </div> <!-- /.col-md-3 -->
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" id="uploadFile" disabled="disabled" class="form-control" placeholder="Browse...">
+                                    <span class="input-group-btn">
+                                        <span class="fileUpload btn btn-primary">
+                                        <span id="up_txt">Upload</span>
+                                            <form method="POST" action="" enctype="multipart/form-data">
+                                            <input id="uploadBtn" type="file" class="upload" name="imgPerfil"/>
+                                            <!--<input type="file" name="file">-->
+                                            <script type="text/javascript">
+                                                document.getElementById("uploadBtn").onchange = function () {
+                                                    var file = this.value;
+                                                    var path = file;
+                                                    document.getElementById("uploadFile").value = file;
+                                                    document.getElementById("newprofilephoto").src = "../images/uploadTOcomplete.gif";
+                                                    document.getElementById("bottomImage").innerHTML = "<b>Don't forget</b>: Save the changes ...";
+                                                };
+                                            </script>
+                                        </span> <!-- /#up_txt -->
+                                    </span> <!-- /.input-group-btn -->
+                                </div> <!-- input-group -->
+                            </div> <!-- /.row -->
+                        </div> <!-- /.col-md-3 -->
 
-                                <div class="col-md-9 personal-info">
-                                    <h3>Informações Pessoais</h3>
+                        <div class="col-md-9 personal-info">
+                            <h3>Informações Pessoais</h3>
 
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-lg-3 control-label">Name:</label>
-                                            <div class="col-lg-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtName"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a name for the user.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                ?>
-                                                <input class="form-control" value="<?=$_name?>" type="text" name="txtName">
-                                            </div> <!-- /.col-lg-8 -->
-                                        </div> <!-- /.form-group -->
+                            <div class="form-horizontal">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Nome:</label>
+                                        <div class="col-lg-8">
+                                            <?php
+                                                if(isset($_POST["btnAddUser"]) && empty($_POST["txtNome"]))
+                                                {
+                                                    $haerro = true;
+                                                    erroForm("Por favor, introduza um nome para o utilizador.");
+                                                }
+                                            ?>
+                                            <input class="form-control" placeholder="Nome" type="text" name="txtNome" value="<?=$valueNome?>">
+                                        </div> <!-- /.col-lg-8 -->
+                                    </div> <!-- /.form-group -->
 
-                                        <div class="form-group">
-                                            <label class="col-lg-3 control-label">Email:</label>
-                                            <div class="col-lg-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtEmail"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a email for the user.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                ?>
-                                                <input class="form-control" value="<?=$_mail?>" type="email" name="txtEmail">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Email:</label>
+                                        <div class="col-lg-8">
+                                            <?php
+                                                if(isset($_POST["btnAddUser"]) && empty($_POST["txtEmail"]))
+                                                {
+                                                    $haerro = true;
+                                                    erroForm("Por favor, introduza um email para o utilizador.");
+                                                }
+                                            ?>
+                                            <input class="form-control" placeholder="E-mail" type="email" name="txtEmail" value="<?=$valueEmail?>">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
 
-                                        <?php if($dadosSession["permission"] == 1) {?>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Username:</label>
-                                            <div class="col-md-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtUsername"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a username for the user account.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                ?>
-                                                <input class="form-control" value="<?=$_username?>" type="text" name="txtUsername">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
-                                        <?php } ?>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Nome de utilizador:</label>
+                                        <div class="col-md-8">
+                                            <?php
+                                                if(isset($_POST["btnAddUser"]) && empty($_POST["txtUsername"]))
+                                                {
+                                                    $haerro = true;
+                                                    erroForm("Por favor, introduza um nome de utilizador.");
+                                                }
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Password:</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" type="password" name="txtPassword">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
-
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Confirm password:</label>
-                                            <div class="col-md-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && ($_POST["txtPassword"] != $_POST["txtConfPass"])) {
+                                                if(isset($_POST["btnAddUser"]) && !empty($_POST["txtUsername"]) && !empty($_POST["txtEmail"])) {
+                                                    $email_tmp    = $_POST["txtEmail"];
+                                                    $username_tmp = $_POST["txtUsername"]; 
+                                                    $query = $mysqli->query("SELECT * FROM users WHERE email='$email_tmp' OR username='$username_tmp'");
+                                                    $row = $query->num_rows;
+                                                    if($row > 0) {
                                                         $error = true;
                                                         echo "
                                                             <div class='alert alert-warning' role='alert' style='font-size:10pt; margin-left: 0px;'>
                                                             <span class='glyphicon glyphicon-warning-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            The two's password are different.<br/>
-                                                            For safety reasons, these should be the same ...
+                                                            <span class='sr-only'>Erro:</span>
+                                                            Utilizador ou e-mail já registrados.<br />
+                                                            Por favor, introduza valores diferentes.
                                                             </div>  
                                                         ";
                                                     }
-                                                ?>
-                                                <input class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" type="password" name="txtConfPass">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
-
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Morada:</label>
-                                            <div class="col-md-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtCity"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a City for the user.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                ?>
-                                                <input class="form-control" placeholder="Rua" type="text" name="txtRua" style="margin-bottom:10px;" value="<?=$valueRua?>">
-                                                <input class="form-control" placeholder="Localidade" type="text" name="txtLocalidade" style="margin-bottom:10px;" value="<?=$valueLocalidade?>">
-                                                <input class="form-control" placeholder="Código Postal" type="text" name="txtCodigoPostal" value="<?=$valueCodPostal?>">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
-
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Information:</label>
-                                            <div class="col-md-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtInformation"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a Information of the user.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                ?>
-                                                <textarea class="form-control" name="txtInformation" rows="4"><?php echo $_information?></textarea>
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
-
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Birthday:</label>
-                                            <div class="col-md-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtCity"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a Birthday of the user.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                ?>
-                                                <input class="form-control" type="date" value="<?=$_birthday?>" name="txtBirthday">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
-
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Function:</label>
-                                            <div class="col-md-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtFunction"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a function for the user.
-                                                            </div>  
-                                                        ";
                                                 }
-                                                ?>
-                                                <input class="form-control" value="<?=$_function?>" type="text" name="txtFunction">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
+                                            ?>
+                                            <input class="form-control" placeholder="Username" type="text" name="txtUsername" value="<?=$valueUsername?>">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Joined:</label>
-                                            <div class="col-md-8">
-                                                <?php
-                                                    if(isset($_POST["btnAddUser"]) && empty($_POST["txtJoined"])) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-danger' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Error:</span>
-                                                            Please, enter a joined date for the user.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                ?>
-                                                <input class="form-control" type="date" value="<?=$_joined?>" name="txtJoined">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Password:</label>
+                                        <div class="col-md-8">
+                                            <?php
+                                                if(isset($_POST["btnAddUser"]) && empty($_POST["txtPassword"]))
+                                                {
+                                                    $haerro = true;
+                                                    erroForm("Por favor, introduza uma password para o utilizador.");
+                                                }
+                                            ?>
+                                            <input class="form-control" placeholder="11111122333" type="password" name="txtPassword">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Facebook URL:</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" value="<?=$_link_fb?>" type="text" name="txtLinkFb">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Confirme a password:</label>
+                                        <div class="col-md-8">
+                                            <?php
+                                                if(isset($_POST["btnAddUser"]) && ($_POST["txtPassword"] != $_POST["txtConfPass"]))
+                                                {
+                                                    $haerro = true;
+                                                    erroForm("As duas password's não coincidem.<br/>Por razões de segurança, elas devem ser iguais...");
+                                                }
+                                            ?>
+                                            <input class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" type="password" name="txtConfPass">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Twitter URL:</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" value="<?=$_link_tw?>" type="text" name="txtLinkTw">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Morada:</label>
+                                        <div class="col-md-8">
+                                            <?php
+                                                if(isset($_POST["btnAddUser"]) && (empty($_POST["txtRua"]) || empty($_POST["txtLocalidade"]) || empty($_POST["txtCodigoPostal"])))
+                                                {
+                                                    $haerro = true;
+                                                    erroForm("Por favor, introduza a morada do utilizador.");
+                                                }
+                                            ?>
+                                            <input class="form-control" placeholder="Rua" type="text" name="txtRua" style="margin-bottom:10px;" value="<?=$valueRua?>">
+                                            <input class="form-control" placeholder="Localidade" type="text" name="txtLocalidade" style="margin-bottom:10px;" value="<?=$valueLocalidade?>">
+                                            <input class="form-control" placeholder="Código Postal" type="text" name="txtCodigoPostal" value="<?=$valueCodPostal?>">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Github URL:</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" value="<?=$_link_gh?>" type="text" name="txtLinkGh">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div> <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Telemóvel:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" placeholder="Telemóvel" type="text" name="txtTelemovel" value="<?=$valueTelemovel?>">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label"></label>
-                                            <div class="col-md-8">
-                                                <input class="btn btn-primary" value="Update Profile »" type="submit" name="btnAddUser">
-                                            </div> <!-- .col-lg-8 -->
-                                        </div>  <!-- .form-group -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Data de Nascimento:</label>
+                                        <div class="col-md-8">
+                                            <?php
+                                                if(isset($_POST["btnAddUser"]) && empty($_POST["txtDataNascimento"]))
+                                                {
+                                                    $haerro = true;
+                                                    erroForm(" Por favor, introduza uma data de nascimento para o utilizador.");
+                                                }
+                                            ?>
+                                            <input class="form-control" type="date" name="txtDataNascimento" value="<?=$valueDataNascimento?>">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
 
-                                    </div> <!-- .form-horizontal -->
-                                    </form>
-                                </div> <!-- /.col-md-9 -->
+                                    <?php
+                                        if($permissao == 1) { ?>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Permissões:</label>
+                                                <div class="col-md-8">
+                                                    <select name="txtPermissoes" class="form-control">
+                                                        <option value="1">Administrador</option>
+                                                        <option value="2">Editor</option>
+                                                        <option value="3">Cliente</option>
+                                                    </select>
+                                                </div> <!-- .col-lg-8 -->
+                                            </div> <!-- .form-group -->
+                                        <?php } ?>
 
-                            </div> <!-- .panel-body -->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Facebook URL:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" placeholder="Link do Facebook (opcional)" type="text" name="txtLinkFb" value="<?=$valueLinkFb?>">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div> <!-- .form-group -->
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-md-8">
+                                            <input class="btn btn-primary" value="Registar Utilizador" type="submit" name="btnAddUser">
+                                            <input class="btn btn-default" value="Cancelar" type="reset">
+                                        </div> <!-- .col-lg-8 -->
+                                    </div>  <!-- .form-group -->
+                            </form>
+                        </div> <!-- /.col-md-9 -->
+
+                    </div> <!-- .panel-body -->
                   </div>
             </section>
         </section>

@@ -65,14 +65,14 @@
                                     $files1 = scandir('../images/');
                                     $i = 0;
                                     foreach ($files1 as $item) {
-                                        $url = $_SERVER['HTTP_REFERER'];
+                                        $url       = $_SERVER['HTTP_REFERER'];
                                         $imageName = substr($item, 0, strrpos($item, '.'));
                                         $imageExt  = substr($item, strrpos($item, '.') + 1, strlen($item));
-                                        $size = getimagesize('../images/'.$item);
-                                        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                                        $pos = strpos($url, "painel");
-                                        $urlA = substr($url, $pos);
-                                        $url = str_replace(substr($url, strpos($url, "painel")), "", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"). "images/" . $item;
+                                        $size      = getimagesize('../images/'.$item);
+                                        $url       = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                        $pos       = strpos($url, "painel");
+                                        $urlA      = substr($url, $pos);
+                                        $url       = str_replace(substr($url, strpos($url, "painel")), "", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"). "images/" . $item;
                                         $imgSize = $size[0] . "x" . $size[1];
                                         if($size != "") {
                                             echo "<img src='../images/$item' class='img-thumbnail' style='height: 150px; width: 150px; margin: 5px' data-toggle='modal' data-target='#myModal$i'>";
@@ -103,39 +103,6 @@
                                         }
                                         $i++;
                                     }
-                                   /* foreach($files as $file) {
-                                        $imageName = substr($file, 0, strrpos($file, '.'));
-                                        $imageExt  = substr($file, strrpos($file, '.') + 1, strlen($file));
-                                        $sizess = getimagesize($file);
-                                        $url = str_replace(substr($url, strpos($url, "painel")), "", $_SERVER['HTTP_REFERER']) /*. "images/" . $file*/;
-                                        //$url .= ;
-                                        /*if($i >= 0)
-                                            echo "<img src='../images/$file' class='img-thumbnail' style='height: 150px; width: 150px; margin: 5px' data-toggle='modal' data-target='#myModal$i'>";
-                                            echo "
-                                                <div class='modal fade' id='myModal"."$i' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='margin-top: 150px;'>
-                                                    <div class='modal-dialog' role='document'>
-                                                        <div class='modal-content'>
-                                                          <div class='modal-header'>
-                                                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                                                                <h4 class='modal-title' id='myModalLabel'>Image Details: $imageName</h4>
-                                                              </div>
-                                                              <div class='modal-body'>
-                                                                <div id='imageDetailsImg' style='background-color: #ddd; text-align: center'> 
-                                                                    <img src='../images/$file' style='max-height: 150px; padding: 20px'>
-                                                                </div>
-                                                                <br/><br/><b>Nome do ficheiro:</b> $file  <br />
-                                                                <b>Ficheiro do tipo:</b> image/$imageExt <br />
-                                                                <b>URL:</b> $url
-                                                              </div>
-                                                              <div class='modal-footer'>
-                                                              <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                                                           </div>
-                                                        </div>
-                                                      </div>
-                                                </div>
-                                            ";
-                                         $i++;  
-                                    }*/
                                 ?>
                             </div> <!-- /.panel-body -->
                         </div> <!-- /#collapseOne -->
@@ -146,4 +113,3 @@
         </section> <!-- /#content -->
     </body>
 </html>
-

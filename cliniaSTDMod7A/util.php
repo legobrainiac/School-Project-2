@@ -48,6 +48,7 @@
         $row   = $sessionInfo->num_rows;
         if($row) {
             $dados = $sessionInfo->fetch_array();
+            $id = $dados["ID"];
             $nome = $dados["nome"];
             $mail = $dados["email"];
             $last_sign = $dados["last_sign"];

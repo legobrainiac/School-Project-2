@@ -1,4 +1,3 @@
-<button id="show-menu" class="btn btn-default" onclick="ShowMenu()" style="display: none;"><span class="glyphicon glyphicon-th-list"></span></button>
 <span id="logo">
     <a href="index.php"><img src="../images/+std_logo.png" width="110px"></a>
 </span>
@@ -68,15 +67,6 @@
             <li role="separator" class="divider"></li>
             <li><a href="?func=sairPagina"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Terminar Sessão</a></li>
           </ul>
-        </span>
-        <span class="dropdown">
-            <span id="definitions" class="dropdown-tooggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Settings
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </span>
-            <span class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                Comming Soon
-            </span>
         </span>
         <span id="open_menu">
             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>

@@ -24,7 +24,7 @@
     <?=$headerContent?>
     <script>
       function close_alert() {
-        <?php setcookie("viewed",true, time() + 7200); ?>
+        <?php setcookie("viewed", true, time() + ((3600*24)*180));  ?>
       }
     </script>
   </head>

@@ -30,6 +30,6 @@
         </ul>
     </li>
     <li>
-        <a href="settings.php"><div class="link" title="Settings"><i class="fa fa-cog"></i><label class="dsblb"></label>Settings</div></a>
+        <a href="settings.php"><div class="link" title="Settings"><i class="fa fa-cog"></i><label class="dsblb"></label>Definções</div></a>
     </li>
 </ul>

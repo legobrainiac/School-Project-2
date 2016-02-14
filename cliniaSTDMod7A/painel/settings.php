@@ -5,15 +5,14 @@
     protegerPagina();
     include("sairPagina.php");
     sairPagina();
-    $error = false;
     include("../util.php");
+    $nomePagina = "Definições";
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title> Definições > +STD > STD Psiquitria </title>
+        <title><?php echo "$nomePagina > +STD > $siteTitle"?></title>
         <?=$headerContentPainel?>
     </head>
 
@@ -29,20 +28,8 @@
                 <div id="header">   
                     <table>
                         <tr>
-                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;DASHBORD</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Welcome Back, <?php echo " <b>$name</b>!"?></td>
-                            <td id="button_widget">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default">Widget</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Menu</span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li class="disabled"><a href="#">Coming Soon</a></li>
-                                    </ul>
-                                </div>
-                            </td>
+                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Painel de Controlo</td>
+                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Bem-Vindo de volta, <?php echo " <b>$nome</b>!"?></td>
                         </tr>
                     </table>
                 </div> <!-- #header -->
@@ -50,8 +37,8 @@
                 <div id="path">
                     <ol class="breadcrumb">
                         <li><span class="glyphicon glyphicon-home"></span></li>
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Settings</li>
+                        <li><a href="index.php">Home</a></li>
+                        <li class="active"><?=$nomePagina?></li>
                     </ol>
                 </div> <!-- path -->
 
@@ -59,7 +46,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                                    <i class="fa fa-cog"></i>&nbsp;Definições
+                                    <i class="fa fa-cog"></i>&nbsp;<?=$nomePagina?>
                             </h4> <!-- /.panel-title -->
                         </div> <!-- /.panel-heading -->
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -117,11 +104,14 @@
         $titleIns  = $_POST["txtSiteTitle"];
         $sloganIns = $_POST["txtSlogan"];
         $emailIns  = $_POST["txtAdminEmail"];
-        $langIns   = $_POST["optLanguage"];
 
-        if($titleIns  != $siteTitle) $mysqli->query("UPDATE site SET title = '$titleIns' WHERE ID = 1");
-        if($sloganIns != $siteSlogan) $mysqli->query("UPDATE site SET slogan = '$sloganIns' WHERE ID = 1");
-        if($emailIns != $siteEmail) $mysqli->query("UPDATE site SET email = '$emailIns' WHERE ID = 1");
-        if($langIns != $siteLang)  $mysqli->query("UPDATE site SET language = '$langIns' WHERE ID = 1");
+        if($titleIns  != $siteTitle) $mudarNome = $mysqli->query("UPDATE site SET nome = '$titleIns' WHERE ID = 1");
+        if($sloganIns != $siteSlogan) $mudarSlogan =  $mysqli->query("UPDATE site SET slogan = '$sloganIns' WHERE ID = 1");
+        if($emailIns != $siteEmail) $mudarEmail = $mysqli->query("UPDATE site SET email = '$emailIns' WHERE ID = 1");
+
+        if(isset($mudarNome) || isset($mudarEmail) || isset($mudarSlogan)) {
+            alert("Alterações efetuadas com sucesso!");
+            header("Location: settings.php");
+        }
     } 
 ?> 

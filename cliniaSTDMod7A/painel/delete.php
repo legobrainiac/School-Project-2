@@ -3,7 +3,7 @@
     session_start();
     include("protegerPagina.php");
     protegerPagina();
-    include("../functions.php");
+    include("../util.php");
 
 	$table = $_GET["table"];
 	$id = $_GET["id"];

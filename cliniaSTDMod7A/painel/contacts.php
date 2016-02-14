@@ -7,13 +7,14 @@
     sairPagina();
     include("../util.php");
     if($permissao != 1)
-        header('Location: index.php')
+        header('Location: index.php');
+    $nomePagina = "Contactos";
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Contactos > +STD > STD Psiquitria </title>
+        <title> <?php echo "$nomePagina > +STD > $siteTitle"; ?></title>
         <?=$headerContentPainel?>
         <?php 
             $username = $_SESSION["user"];
@@ -34,8 +35,8 @@
                 <div id="header">   
                     <table>
                         <tr>
-                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;DASHBORD</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Welcome Back, <?php echo " <b>$nome</b>!"?></td>
+                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Painel de Controlo</td>
+                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de Volta, <?php echo " <b>$nome</b>!"?></td>
                         </tr>
                     </table>
                 </div> <!-- #header -->
@@ -44,7 +45,7 @@
                     <ol class="breadcrumb">
                         <li><span class="glyphicon glyphicon-home"></span></li>
                         <li><a href="#">Home</a></li>
-                        <li class="active">Contact's</li>
+                        <li class="active"><?=$nomePagina?></li>
                     </ol>
                 </div> <!-- path -->
 
@@ -52,7 +53,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
-                                    <i class="fa fa-comments"></i>&nbsp;Contactos
+                                    <i class="fa fa-comments"></i>&nbsp;<?=$nomePagina?>
                             </h4> <!-- /.panel-title -->
                         </div> <!-- /.panel-heading -->
                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -87,7 +88,6 @@
                                                         <td><?=$get["date"]?></td>
                                                         <td><?php if($get["wantContacted"] == 0) echo "No"; else echo "Yes";?></td>
                                                         <td><?php if($get["contacted"] == 0) echo "No"; else echo "Yes";?></td>
-                                                        <!--<td><a href="" title="Edit this profile"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;<a href="" title="Delete this user"><i class="fa fa-user-times"></i></a></td>-->
                                                     </tr>
                                         <?php
                                                 }
