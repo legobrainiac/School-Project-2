@@ -6,11 +6,11 @@
         <a href="index.php"><div class="link" title="Dashboard"><i class="fa fa-home"></i><label class="dsblb">Página Principal</label></div></a>
     </li>
     <li>
-        <div class="link" title="Post's"><i class="fa fa-file"></i><label class="dsblb">Artigos<i class="fa fa-chevron-down"></i></div>
+        <div class="link" title="Post's"><i class="fa fa-file"></i><label class="dsblb">Consultas<i class="fa fa-chevron-down"></i></div>
         <ul class="submenu">
-            <li title="All Post's"><a href="allPosts.php"><label class="dsblb">Todos os Artigos</a></li>
-            <li title="Add New"><a href="addPost.php"><label class="dsblb">Novo Artigo</a></li>
-            <li title="Categories"><a href="categories.php"><label class="dsblb">Categorias</a></li>
+            <li title="Todas as consultas"><a href="todasConsultas"><label class="dsblb">Todos as Consultas</a></li>
+            <li title="Marcar Consulta"><a href="marcarConsulta"><label class="dsblb">Marcar consulta</a></li>
+            <li title="Consultas Marcadas"><a href="consultasMarcadas"><label class="dsblb">Consultas Marcadas</a></li>
         </ul>
     </li>
     <li>

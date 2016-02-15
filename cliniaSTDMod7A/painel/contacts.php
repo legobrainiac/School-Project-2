@@ -74,7 +74,7 @@
                                     <tbody>
                                         <?php
                                             $i = 0;
-                                            $select = $mysqli->query("SELECT * FROM contactos ORDER BY ID ASC");
+                                            $select = $mysqli->query("SELECT * FROM contactos ORDER BY ID DESC");
                                             $row = $select->num_rows;
                                             if($row > 0) {
                                                 while($get = $select->fetch_array()) {
@@ -86,14 +86,14 @@
                                                         <td><?=$get["assunto"]?></td>
                                                         <td><?=$get["mensagem"]?></td>
                                                         <td><?=$get["data"]?></td>
-                                                        <td><?php if($get["querSerContactado"] == 0) echo "No"; else echo "Yes";?></td>
-                                                        <td><?php if($get["contactada"] == 0) echo "No"; else echo "Yes";?></td>
+                                                        <td><?php if($get["querSerContactado"] == 0) echo "Não"; else echo "Sim";?></td>
+                                                        <td><?php if($get["contactada"] == 0) echo "Não"; else echo "Sim";?></td>
                                                     </tr>
                                         <?php
                                                 }
                                             } else {
                                         ?>
-                                            <h4> There is no message.. <br/></h4>
+                                            <h4> Não existem contactos.. <br/></h4>
                                         <?php
                                             }
                                         ?>
