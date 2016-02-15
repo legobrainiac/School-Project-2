@@ -49,15 +49,24 @@
                 	?>
 		                    <div class="alert alert-success alert-dismissible fade in" role="alert">
 		                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              Bem-Vindo ao portal +STD!<br/>
-                              Temos imensas funcionalidades à sua espera, que simplificaram a sua vida.
+                              Bem-Vindo ao novo portal +STD!<br/>
 		                    </div>
                     <?php } ?>
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <h3 class="panel-title">As minhas consultas</h3>
+                            <h3 class="panel-title"><i class="fa fa-heartbeat"></i>&nbsp;Consultas Agendadas</h3>
+                          </div> <!-- /panel-heading -->
+                          <div class="panel-body">
+                            Panel body
+                          </div> <!-- /.panel-body -->
+                        </div> <!-- /.panel -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">As minhas mensagens</h3>
                           </div> <!-- /panel-heading -->
                           <div class="panel-body">
                             Panel Body
@@ -65,13 +74,39 @@
                         </div> <!-- /.panel -->
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                          <div class="panel-body" style="color: #000">
+                            A <b>STD Psiquiatria</b> disponibiliza agora um novo canal através do qual pode efetuar a marcação da sua consulta, consultar os atos médicos agendados ou remarcar uma consulta.<br/><br/>
+                            A pensar em si e no seu bem-estar, disponibilizamos uma solução acessível e eficaz, garantindo com segurança uma total confidencialidade.<br /><br/>
+                            <b>STD</b> é uma marca que abrange clínicas de norte a sul do país. O seu principal foco é cuidar dos seus clientes.<br/><br/>
+                            Mais do que uma clinica, o <b>grupo STD</b> é uma casa que recebe os seus clientes, que partilha as suas preocupações e que os apoia sempre da melhor forma.
+                            Estamos ao seu lado quando mais precisam: quer através do atendimento dos nossos médicos especialistas em várias áreas da saúde, passando pelo acompanhamento telefónico, pelos melhores equipamentos tecnológicos ou até pelos serviços online que gerem as suas consultas, marcações, exames e muitos mais.<br/><br/>
+                            <b>Nas clinicas STD ou em qualquer uma das suas Clínicas encontram-se pessoas genuínas que têm uma única preocupação: cuidar.​</b>
+                          </div> <!-- /.panel-body -->
+                        </div> <!-- /.panel -->
+                    </div>
+
+                    <div class="col-md-4">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <h3 class="panel-title">As minhas mensagens</h3>
+                            <h3 class="panel-title">Eventos</h3>
                           </div> <!-- /panel-heading -->
                           <div class="panel-body">
-                            Panel Body
+                            Nesta área damos-lhe a conhecer os eventos organizados pelas Unidades da STD Psiquiatria. Contamos com a sua participação!<br/><br/>
+                            <div class="alert alert-warning">Não existem eventos agendados.</div>
+                          </div> <!-- /.panel-body -->
+                        </div> <!-- /.panel -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Inquéritos</h3>
+                          </div> <!-- /panel-heading -->
+                          <div class="panel-body">
+                            Ajude-nos a conhecer o que mais valoriza e contribua para temas relevantes na área da saúde. Agradecemos o seu contributo.<br/><br/>
+                            <div class="alert alert-warning">Não existem inquéritos ativos.</div>
                           </div> <!-- /.panel-body -->
                         </div> <!-- /.panel -->
                     </div>
