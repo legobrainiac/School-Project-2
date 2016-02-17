@@ -3,7 +3,7 @@
     session_start();
 	$headerContent = 
 	"<meta charset='utf-8'>
-    <link rel='icon' type='image/png' href='favSTD.png' />
+    <link rel='icon' type='image/png' href='images/favSTD.png' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='description' content='Web Design, Software and Game Development'>
@@ -77,5 +77,19 @@
             $message
         </div>  
         ";
+    }
+
+    function verificar_data($data_con) {
+        $dia_con = substr($data_con, 8, 2);
+        $mes_con = substr($data_con, 5, 2);
+        $ano_con = substr($data_con, 0, 4);
+        $dia_act = date("d");
+        $mes_act = date("m");
+        $ano_act = date("Y"); 
+
+        if($dia_con < $dia_act && $mes_con <= $mes_act && $ano_con <= $ano_act)
+          return true;
+        else 
+          return false;
     }
 ?>

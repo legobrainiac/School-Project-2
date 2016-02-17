@@ -3,9 +3,9 @@
 	session_start();
 	include("protegerPagina.php");
 	protegerPagina();
-    include("sairPagina.php");
-    sairPagina();
-    include("../util.php");
+  include("sairPagina.php");
+  sairPagina();
+  include("../util.php");
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +58,44 @@
                             <h3 class="panel-title"><i class="fa fa-heartbeat"></i>&nbsp;Consultas Agendadas</h3>
                           </div> <!-- /panel-heading -->
                           <div class="panel-body">
-                            Panel body
+                            <table class="table table-striped"> 
+                                    <thead> 
+                                        <tr> 
+                                            <th>Clinica</th> 
+                                            <th>Especialidade</th>
+                                            <th>Médico</th> 
+                                            <th>Data e Hora</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $i = 0;
+                                            $select = $mysqli->query("SELECT * FROM consultas WHERE nome = '$nome'");
+                                            $row = $select->num_rows;
+                                            if($row > 0) {
+                                                while($get = $select->fetch_array()) {
+                                                  if(!verificar_data($get["data"])){
+                                        ?>
+                                                    <tr> 
+                                                        <td><?=$get["clinica"]?></td>
+                                                        <td><?=$get["especialidade"]?></td>
+                                                        <td><?=$get["medico"]?></td>
+                                                        <td><?=$get["data"]." às ".$get["hora"][0].$get["hora"][1].$get["hora"][2].$get["hora"][3].$get["hora"][4]?></td>
+                                                    </tr>
+                                        <?php
+                                                  }
+                                                }
+                                            } else {
+                                        ?>
+                                            <h4> Nenhum utilizador registado. <br/></h4>
+                                            <div>
+                                                <a href="addUser.php">Adicione um.</a>
+                                            </div>
+                                        <?php
+                                            }
+                                        ?>
+                                    </tbody> 
+                                </table>
                           </div> <!-- /.panel-body -->
                         </div> <!-- /.panel -->
                     </div>
