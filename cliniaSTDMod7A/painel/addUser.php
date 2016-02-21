@@ -1,8 +1,6 @@
 <?php
     include("../connection.php");
     session_start();
-    include("protegerPagina.php");
-    protegerPagina();
     include("sairPagina.php");
     sairPagina();
     $haerro = false;
@@ -51,32 +49,7 @@
     </head>
 
     <body id="addUser">
-        <section id="navbar_sup">
-            <?php include("navbarSup.php") ?>
-        </section> <!-- #navbar_sup -->
-        <section id="content">
-            <section id="navbar_lat">
-                <?php include("navbarLat.php") ?>
-            </section>
             <section id="dashboard">
-                <div id="header">   
-                    <table>
-                        <tr>
-                            <td class="right_divider" style="font-size: 14pt; text-indent: 7px;" width="20.5%"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Painel de Controlo</td>
-                            <td class="right_divider" width="71%"><span class="glyphicon glyphicon-info-sign"></span> Bem-Vindo de volta, <?php echo " <b>$nome</b>!"?></td>
-                        </tr>
-                    </table>
-                </div> <!--/#header-->
-
-                <div id="path">
-                    <ol class="breadcrumb">
-                        <li><span class="glyphicon glyphicon-home"></span></li>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="allUsers.php">Utilizadores</a></li>
-                        <li class="active">Adicionar Utilizador</li>
-                    </ol>
-                </div> <!-- path -->
-
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
@@ -250,8 +223,8 @@
                                                     <div class="col-md-8">
                                                         <select name="txtPermissoes" class="form-control">
                                                             <option value="1">Administrador</option>
-                                                            <option value="2">Editor</option>
-                                                            <option value="3">Cliente</option>
+                                                            <option value="2">Médico</option>
+                                                            <option value="3">Utente</option>
                                                         </select>
                                                     </div> <!-- .col-lg-8 -->
                                                 </div> <!-- .form-group -->
@@ -297,7 +270,8 @@
         $permissionIns  = $_POST["txtPermissoes"];
         $telemovelIns   = $_POST["txtTelemovel"];
         $linkFbIns      = $_POST["txtLinkFb"];
-        $query2 = $mysqli->query("INSERT INTO users(username, password, email, nome, DataNascimento, morada, telemovel, linkFb, permissoes, ativo) VALUES ('$usernameIns', '$passwordIns', '$emailIns', '$nameIns', '$birthdayIns', '$moradaIns', '$telemovelIns', '$linkFbIns', '1','1')");
+
+        $query2 = $mysqli->query("INSERT INTO users(username, password, email, nome, DataNascimento, morada, telemovel, linkFb, permissoes, ativo) VALUES ('$usernameIns', '$passwordIns', '$emailIns', '$nameIns', '$birthdayIns', '$moradaIns', '$telemovelIns', '$linkFbIns', '$permissionIns','1')");
         if($query2)
             alert("Utilizador Registado!");
         else 

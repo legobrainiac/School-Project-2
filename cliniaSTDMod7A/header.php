@@ -13,9 +13,10 @@
 		<ul class="nav navbar-nav">
 			<li class="home active"><a href="index">Home</a></li>
             <li class="contact"><a href="contactos">Contactos</a></li>
-            <li class="team"><a href="sobre#team">Equipa</a></li>
+            <li class="team"><a href="sobre#team">Médicos</a></li>
             <li class="marcar_consulta"><a href="sobre#clinicas">Clinicas</a></li>
             <li class="about"><a href="sobre">Sobre</a></li>
+            <li class="registar"><a href="registar">Registe-se</a></li>
             <li id="login_ic login_menu"><a href="login"><img src="images/loginico.png" alt="Login" height="20px"></li></a>
 		</ul>
 	</div><!-- /.nav-collapse -->

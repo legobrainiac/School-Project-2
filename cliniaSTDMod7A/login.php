@@ -2,13 +2,17 @@
 	include("connection.php");
 	include("util.php");
 	error_reporting(false);	
-	if (isset($_POST["send"])) {
+	if (isset($_POST["btnLogin"])) {
 		if ($_POST["remember"]) {
-			setcookie("unm",$_POST["input_User"], time() + (86400 * 30));
-			setcookie("psw",$_POST["input_Pass"], time() + (86400 * 30));
+			setcookie("unm",$_POST["txtUsername"], time() + (86400 * 30));
+			setcookie("psw",$_POST["txtPassword"], time() + (86400 * 30) * 3);
 		}
 	}
 	$nomePagina = "Login +STD";
+
+	if(isset($_SESSION["user"])) {
+		echo "<script>location.href='painel/index.php'</script>";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -96,13 +100,25 @@
 					<input type="checkbox" id="remember" name="remember"><label for="remember">&nbsp;Manter Sessão iniciada</label>
 					<input id="submit_login" name="btnLogin" type="submit" class="btn btn-primary pull-right" value="Login" id="btn_login">
 				</form>
+				<br/>
+				<a href="painel/addUser"><button class="btn btn-success pull-right">Registe-se</button></a> <br/>
 			</div>
-			<div style="color: #ffffff; text-align: center">&copy; 2015, <a href="www.ahiruproductions.com" style="text-decoration: none; color: #fff">Ahiru Productions</a></div>
+			<div style="color: #ffffff; text-align: center">&copy; 2015, <a href="http://www.ahiruproductions.com" style="text-decoration: none; color: #fff">Ahiru Productions</a></div>
 		</div>
 	</body>
 </html>
 
 <?php
+	if(isset($_COOKIE["unm"]) && isset($_COOKIE["psw"])) {
+		$username = $_COOKIE["unm"];
+		$password = sha1(sha1(md5(sha1($_COOKIE["psw"]))));
+		$user = $mysqli->query("SELECT * FROM users WHERE username='$username' AND password='$password'");
+		if($user->num_rows > 0) {
+			echo "<script>location.href='painel/index.php'</script>";
+			session_start();
+			$_SESSION["user"] = $username;
+		}
+	}
 	if(isset($_POST["btnLogin"])) {
 		if(empty($_POST["txtUsername"]) || empty($_POST["txtPassword"])) {
 			alert("Por favor, preencha todos os campos...");

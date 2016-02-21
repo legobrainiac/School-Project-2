@@ -516,3 +516,31 @@ body#maintenance p {
 }
 
 /* /MAINTENANCE */
+
+/*DISPOSITIVOS MOVEIS*/
+@media (max-width:767px){
+	.navbar-nav {
+		margin-right: 330px;
+		width: 107%;
+		background-color: #222222;
+		top: 500px;
+	}
+
+	body#home .navbar-top {
+		background-color: #222222;
+	}
+
+	.logo {
+		margin-left: 245%;
+		height: 45px;
+		margin-top: -12px;
+	}
+
+	.navbar-header {
+		height: 50px;
+	}
+
+	#navbar {
+		margin-top: 7px;
+	}
+}

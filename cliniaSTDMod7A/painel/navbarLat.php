@@ -10,8 +10,17 @@
         <ul class="submenu">
             <?php if($permissao == 1) { ?><li title="Todas as consultas"><a href="todasConsultas"><label class="dsblb">Todos as Consultas</a></li><?php } ?>
             <li title="Marcar Consulta"><a href="marcarConsulta"><label class="dsblb">Marcar consulta</a></li>
-            <li title="Consultas Marcadas"><a href="consultasMarcadas"><label class="dsblb">Consultas Agendadas</a></li>
-            <li title="Consultas Marcadas"><a href="consultasMarcadas"><label class="dsblb">Histórico de Consultas</a></li>
+            <li title="Consultas Marcadas"><a href="consultasAgendadas"><label class="dsblb">Consultas Agendadas</a></li>
+            <li title="Consultas Marcadas"><a href="historicoConsultas"><label class="dsblb">Histórico de Consultas</a></li>
+        </ul>
+    </li>
+     <li>
+        <div class="link" title="Mensagens"><i class="fa fa-commenting"></i>
+        <label class="dsblb">Mensagens<i class="fa fa-chevron-down"></i></div>
+        <ul class="submenu">
+            <li title="Marcar Consulta"><a href="enviarMensagem"><label class="dsblb">Nova Mensagem</a></li>
+            <li title="As minhas mensagens"><a href="mensagens"><label class="dsblb">As minhas mensagens</a></li>
+            <li title="Mensagens Enviadas"><a href="mensagensEnviadas"><label class="dsblb">Mensagens Enviadas</a></li>
         </ul>
     </li>
     <?php if($permissao == 1) { ?>

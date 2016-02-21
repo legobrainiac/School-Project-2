@@ -78,11 +78,11 @@
             </div>
             <div id="featured_projects" class="col-md-4" style="margin-bottom:50px;">
                 <h4>Rede de Clínicas</h4>
-                <a href=""><img src="images/clinicas.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
+                <a href="sobre#clinicas"><img src="images/clinicas.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
                 <h4>Médicos</h4>
-                <a href="sobre.php#team"><img src="images/medicos.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
+                <a href="sobre#team"><img src="images/medicos.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
                 <h4>Mais STD</h4>
-                <a href="painel/index.php"><img src="images/+std.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
+                <a href="painel/index"><img src="images/+std.png" style="margin-bottom: 10px;" class="miniAppIMG"></a>
             </div>
         </section>
     </section>

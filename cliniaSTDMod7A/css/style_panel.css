@@ -19,7 +19,13 @@ body {
 	background-attachment: fixed;
 	background-size: 100% 100%;
 	font-family: 'Ubuntu', sans-serif;
-	color: #9ea7b3!important;
+	color: #9ea7b3;
+}
+
+body#registar {
+	background-color: #fff;
+	color: #000;
+	background-image: url("");
 }
 
 a:hover {
@@ -31,6 +37,10 @@ div#container {
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 7%;
+}
+
+#verMenu {
+	display: none;
 }
 
 div#login-logo {
@@ -583,13 +593,36 @@ ul#accordion.accordion {
  		display: block;
  	}
 
+ 	.img-logo {
+ 		margin-left: 36px;
+ 	}
+
  	section#navbar_lat {
- 		display: none;	
+ 		width: 105%;
+ 		padding-left: 30px;
+ 		margin-bottom: 40px;
+ 	}
+
+ 	.link {
+ 		width: 200%;
  	}
  	
  	section#dashboard {
  		width: 100%;
  	}
+
+	#cp {
+		display: none;
+	}
+
+	#verMenu {
+		display: block;
+		height: 77px;
+		width: 77px;
+		margin-left: -20px;	
+		position: absolute;
+		border-radius: 0px;
+	}
  }
 
 .rotate {

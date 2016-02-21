@@ -24,7 +24,7 @@
     </div>
 </div>
 <div id="footerBottom">
-    Copyrights &copy; 2015, Ahiru Productions
+    Copyrights &copy; 2015, <a href="http://www.ahiruproductions.com">Ahiru Productions</a>
     <div id="social" class="pull-right">
         <ul>
             <a href="https://www.facebook.com/" target="_blank"><li class="facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></li></a>

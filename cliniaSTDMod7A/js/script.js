@@ -98,9 +98,3 @@ function formatText(btn) {
         }
     }
 }
-
-function Submit () {
-    var form = document.getElementById('form');
-    form.elements["txtBodyPst"].value = window.frames['frm'].document.body.innerHTML;
-    alert('done');
-}

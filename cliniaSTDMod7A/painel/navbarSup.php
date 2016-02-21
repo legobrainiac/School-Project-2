@@ -1,5 +1,5 @@
 <span id="logo">
-    <a href="index.php"><img src="../images/+std_logo.png" width="110px"></a>
+    <a href="index.php"><img src="../images/+std_logo.png" width="110px" class="img-logo"></a>
 </span>
 <span id="cp">Painel de Controlo</span>
 <span id="right">

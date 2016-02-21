@@ -63,14 +63,21 @@
                                         <tr> 
                                             <th>Clinica</th> 
                                             <th>Especialidade</th>
-                                            <th>Médico</th> 
+                                            <?php
+                                                if($permissao == 2)
+                                                    echo "<th>Utente</th>";
+                                                else
+                                                    echo "<th>Médico</th>";
+                                            ?>
                                             <th>Data e Hora</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $i = 0;
-                                            $select = $mysqli->query("SELECT * FROM consultas WHERE nome = '$nome'");
+                                            if($permissao == 2) //medico
+                                                $select = $mysqli->query("SELECT * FROM consultas WHERE medico = '$nome'");
+                                            else
+                                                $select = $mysqli->query("SELECT * FROM consultas WHERE nome = '$nome'");
                                             $row = $select->num_rows;
                                             if($row > 0) {
                                                 while($get = $select->fetch_array()) {
@@ -79,7 +86,13 @@
                                                     <tr> 
                                                         <td><?=$get["clinica"]?></td>
                                                         <td><?=$get["especialidade"]?></td>
-                                                        <td><?=$get["medico"]?></td>
+                                                        
+                                                        <?php 
+                                                            if($permissao == 2) //medico
+                                                                echo "<td>".$get['nome']."</td>";
+                                                            else
+                                                                echo "<td>".$get['medico']."</td>";
+                                                        ?>
                                                         <td><?=$get["data"]." às ".$get["hora"][0].$get["hora"][1].$get["hora"][2].$get["hora"][3].$get["hora"][4]?></td>
                                                     </tr>
                                         <?php
@@ -87,10 +100,7 @@
                                                 }
                                             } else {
                                         ?>
-                                            <h4> Nenhum utilizador registado. <br/></h4>
-                                            <div>
-                                                <a href="addUser.php">Adicione um.</a>
-                                            </div>
+                                            <h4> Nenhuma Consulta.. <br/></h4>
                                         <?php
                                             }
                                         ?>
@@ -106,7 +116,36 @@
                             <h3 class="panel-title">As minhas mensagens</h3>
                           </div> <!-- /panel-heading -->
                           <div class="panel-body">
-                            Panel Body
+                            <table class="table table-striped"> 
+                                    <thead> 
+                                        <tr> 
+                                            <th>De</th> 
+                                            <th>Mensagem</th>
+                                            <th>Data</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $select = $mysqli->query("SELECT * FROM mensagens WHERE recetor = '$username'");
+                                            $row = $select->num_rows;
+                                            if($row > 0) {
+                                                while($get = $select->fetch_array()) {
+                                        ?>
+                                                    <tr> 
+                                                        <td><?=$get["emissor"]?></td>
+                                                        <td><?=$get["mensagem"]?></td>
+                                                        <td><?=$get["data"]?></td>
+                                                    </tr>
+                                        <?php
+                                                }
+                                            } else {
+                                        ?>
+                                            <h4> Nenhuma mensagem... <br/></h4>
+                                        <?php
+                                            }
+                                        ?>
+                                    </tbody> 
+                                </table>
                           </div> <!-- /.panel-body -->
                         </div> <!-- /.panel -->
                     </div>

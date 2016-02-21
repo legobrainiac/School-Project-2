@@ -174,12 +174,28 @@
         <div id="team">
             <h4 style="margin-bottom: 15px">A nossa equipa</h4>
             <div class="members" style="margin-left: 100px;">
+                <div id="pesquisaEquipa" class="pull-right">
+                    <form class="form-inline" method="POST" action="sobre#team">
+                      <div class="form-group">
+                        <?php 
+                            $valuePesquisa = isset($_POST["txtPesquisa"]) ? $_POST["txtPesquisa"] : "";
+                        ?>
+                        <input type="text" class="form-control" placeholder="Nome" name="txtPesquisa" value="<?=$valuePesquisa?>">
+                      </div>
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;Pesquisar</button>
+                    </form>
+                </div><br/><br/><br/>
                 <?php 
-                    $medicos = $mysqli->query("SELECT * FROM medicos");
+                    if(isset($_POST["txtPesquisa"])) {
+                        $pesquisa = $_POST["txtPesquisa"];
+                        $medicos = $mysqli->query("SELECT * FROM medicos WHERE nome LIKE '%$pesquisa%'");
+                    }
+                    else
+                        $medicos = $mysqli->query("SELECT * FROM medicos");
                     while($dadosMed = $medicos->fetch_array()) {
                 ?>
                     <div class="one_mem">
-                        <img class="img_about" src="images/<?=$dadosMed["Nome"]?>.png">
+                        <img class="img_about" src="images/<?=$dadosMed["UserMedico"]?>.jpg">
                         <h3 class="name"><?=$dadosMed["Nome"]?></h3>
                         <div class="job-title"><?=$dadosMed["Especialidade"] ." | STD " . $dadosMed["unidade"]?></div>
                         <ul id="socialicon">

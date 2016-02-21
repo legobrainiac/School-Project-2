@@ -1,4 +1,4 @@
-ErrorDocument 404 /404.php
+ErrorDocument 404 http://localhost/School-Project-2/cliniaSTDMod7A/404.php
 
 IndexIgnore *
 
