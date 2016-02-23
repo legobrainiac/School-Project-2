@@ -8,9 +8,9 @@
 	$table = $_GET["table"];
 	$id = $_GET["id"];
 
-	if($table == "posts") {
-		$type = "Artigo";
-		$local = "posts";
+	if($table == "consultas") {
+		$type = "Consulta";
+		$local = "consultas";
 	}
 	elseif($table == "users") {
 		$type = "Utilizador";
@@ -20,8 +20,14 @@
 	$delete = $mysqli->query("UPDATE $local SET ativo = 0 WHERE ID = '$id'");
 
 	if($delete) {
-		alert("$type sucessfull deleted.'");
-		header('Location: index.php');
+		if($type == "Consulta") {
+			alert("Consulta desmarcada!");
+			header('Location: consultasAgendadas.php');
+		}
+		else {
+			alert("Utilizador Eliminado!");
+			header('Location: index.php');
+		}
 	}
 	else {
 		alert("Erro ao eliminar o $type");

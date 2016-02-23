@@ -75,14 +75,14 @@
                                     <tbody>
                                         <?php
                                             if($permissao == 2) //medico
-                                                $select = $mysqli->query("SELECT * FROM consultas WHERE medico = '$nome'");
+                                                $select = $mysqli->query("SELECT * FROM consultas WHERE medico = '$nome' AND ativo=1");
                                             else
-                                                $select = $mysqli->query("SELECT * FROM consultas WHERE nome = '$nome'");
+                                                $select = $mysqli->query("SELECT * FROM consultas WHERE nome = '$nome' AND ativo=1");
                                             $row = $select->num_rows;
                                             if($row > 0) {
                                                 while($get = $select->fetch_array()) {
                                                   if(!verificar_data($get["data"])){
-                                        ?>
+                                        ?>  
                                                     <tr> 
                                                         <td><?=$get["clinica"]?></td>
                                                         <td><?=$get["especialidade"]?></td>
@@ -152,13 +152,12 @@
 
                     <div class="col-md-4">
                         <div class="panel panel-default">
-                          <div class="panel-body" style="color: #000">
+                          <div class="panel-body alert-info">
                             A <b>STD Psiquiatria</b> disponibiliza agora um novo canal através do qual pode efetuar a marcação da sua consulta, consultar os atos médicos agendados ou remarcar uma consulta.<br/><br/>
                             A pensar em si e no seu bem-estar, disponibilizamos uma solução acessível e eficaz, garantindo com segurança uma total confidencialidade.<br /><br/>
-                            <b>STD</b> é uma marca que abrange clínicas de norte a sul do país. O seu principal foco é cuidar dos seus clientes.<br/><br/>
-                            Mais do que uma clinica, o <b>grupo STD</b> é uma casa que recebe os seus clientes, que partilha as suas preocupações e que os apoia sempre da melhor forma.
-                            Estamos ao seu lado quando mais precisam: quer através do atendimento dos nossos médicos especialistas em várias áreas da saúde, passando pelo acompanhamento telefónico, pelos melhores equipamentos tecnológicos ou até pelos serviços online que gerem as suas consultas, marcações, exames e muitos mais.<br/><br/>
-                            <b>Nas clinicas STD ou em qualquer uma das suas Clínicas encontram-se pessoas genuínas que têm uma única preocupação: cuidar.​</b>
+                            <b>STD</b> é uma marca que abrange clínicas de norte a sul do país. O seu principal foco é cuidar dos seus clientes.<br/>
+                            Nas clinicas STD encontram-se pessoas genuínas que têm uma única preocupação: cuidar.​<br/><br/>
+                            <b>MAIS STD, MAIS um canal, MAIS acessível e MAIS cómodo!</b>
                           </div> <!-- /.panel-body -->
                         </div> <!-- /.panel -->
                     </div>

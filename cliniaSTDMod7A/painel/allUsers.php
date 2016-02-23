@@ -75,8 +75,11 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $i = 0;
-                                            $select = $mysqli->query("SELECT * FROM users ORDER BY ID ASC");
+                                            if(isset($_POST["optOrdenar"]))
+                                                $order = $_POST["optOrdenar"];
+                                            else
+                                                $order =  'ID';
+                                            $select = $mysqli->query("SELECT * FROM users ORDER BY $order");
                                             $row = $select->num_rows;
                                             if($row > 0) {
                                                 while($get = $select->fetch_array()) {
@@ -111,6 +114,22 @@
                                         ?>
                                     </tbody> 
                                 </table>
+                                <!--<div class="pull-right">-->
+                                    <form class="form-horizontal" method="POST" action="" name="frmOrder">
+                                        <label for="optOrderBy" class="col-sm-10 control-label"><b>Ordenar por:</b></label>
+                                        <div class="col-sm-2">
+                                            <select name="optOrdenar" onchange="javascript:frmOrder.submit()" class="form-control">
+                                                <option value="ID"  <?php if($order == "ID") {echo "selected='selected'"; }?>>ID</option>
+                                                <option value="username" <?php if($order == "username") {echo "selected='selected'"; }?>>Username</option>
+                                                <option value="nome" <?php if($order == "nome") {echo "selected='selected'"; }?>>Nome</option>
+                                                <option value="email" <?php if($order == "email") {echo "selected='selected'"; }?>>Email</option>
+                                                <option value="dataNascimento" <?php if($order == "dataNascimento") {echo "selected='selected'"; }?>>Data de Nascimento</option>
+                                                <option value="morada" <?php if($order == "morada") {echo "selected='selected'"; }?>>Morada</option>
+                                                <option value="telemovel" <?php if($order == "telemovel") {echo "selected='selected'"; }?>>Telemovel</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                <!--</div>.-->
                             </div> <!-- /.panel-body -->
                         </div> <!-- /#collapseOne -->
                     </div> <!-- /.panel -->

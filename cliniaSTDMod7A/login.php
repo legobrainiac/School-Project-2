@@ -58,7 +58,7 @@
 			}
 
 			function message() {
-				alert('Entra em contacto connosco.')
+				alert('Por favor, envie um e-mail para suportemaisstd@stdpsiquiatria.pt com o seu nome de utilizador.\nDepois, entraremos em contacto consigo para resolver a situação.')
 			}
 
 		</script>
@@ -112,8 +112,10 @@
 	if(isset($_COOKIE["unm"]) && isset($_COOKIE["psw"])) {
 		$username = $_COOKIE["unm"];
 		$password = sha1(sha1(md5(sha1($_COOKIE["psw"]))));
-		$user = $mysqli->query("SELECT * FROM users WHERE username='$username' AND password='$password'");
+		$user = $mysqli->query("SELECT * FROM users WHERE username='$username' OR email='$username' AND password='$password' AND ativo = 1");
 		if($user->num_rows > 0) {
+			$dadosuser= $user->fetch_array();
+			$username = $dadosuser["username"];
 			echo "<script>location.href='painel/index.php'</script>";
 			session_start();
 			$_SESSION["user"] = $username;
@@ -126,8 +128,10 @@
 		else {
 			$username = $_POST["txtUsername"];
 			$password = sha1(sha1(md5(sha1($_POST["txtPassword"]))));
-			$user = $mysqli->query("SELECT * FROM users WHERE username='$username' AND password='$password'");
+			$user = $mysqli->query("SELECT * FROM users WHERE username='$username' OR email='$username' AND password='$password' AND ativo = 1");
 			if($user->num_rows > 0) {
+				$dadosuser= $user->fetch_array();
+				$username = $dadosuser["username"];
 				echo "<script>location.href='painel/index.php'</script>";
 				session_start();
 				$_SESSION["user"] = $username;

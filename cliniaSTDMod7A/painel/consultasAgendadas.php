@@ -6,7 +6,7 @@
     include("sairPagina.php");
     sairPagina();
     include("../util.php");
-    $nomePagina = "Histórico de Consultas";
+    $nomePagina = "Consultas Agendadas";
 ?>
 
 <!DOCTYPE html>
@@ -60,24 +60,42 @@
                                         <tr> 
                                             <th>Clinica</th> 
                                             <th>Especialidade</th>
-                                            <th>Médico</th> 
+                                            <?php
+                                                if($permissao == 2)
+                                                    echo "<th>Utente</th>";
+                                                else
+                                                    echo "<th>Médico</th>";
+                                            ?>
                                             <th>Data e Hora</th>
+                                            <th>Opções</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $i = 0;
-                                            $select = $mysqli->query("SELECT * FROM consultas WHERE nome = '$nome'");
+                                            if($permissao == 2) //medico
+                                                $select = $mysqli->query("SELECT * FROM consultas WHERE medico = '$nome' AND ativo=1");
+                                            else
+                                                $select = $mysqli->query("SELECT * FROM consultas WHERE nome = '$nome' AND ativo=1");
                                             $row = $select->num_rows;
                                             if($row > 0) {
                                                 while($get = $select->fetch_array()) {
                                                   if(!verificar_data($get["data"])){
-                                        ?>
+                                        ?>  
                                                     <tr> 
                                                         <td><?=$get["clinica"]?></td>
                                                         <td><?=$get["especialidade"]?></td>
-                                                        <td><?=$get["medico"]?></td>
+                                                        
+                                                        <?php 
+                                                            if($permissao == 2) //medico
+                                                                echo "<td>".$get['nome']."</td>";
+                                                            else
+                                                                echo "<td>".$get['medico']."</td>";
+                                                        ?>
                                                         <td><?=$get["data"]." às ".$get["hora"][0].$get["hora"][1].$get["hora"][2].$get["hora"][3].$get["hora"][4]?></td>
+                                                        <td>
+                                                            <a style="color: #000; text-decoration: none;" href="editarConsulta.php?id=<?=$get['ID']?>" title="Edit this profile"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+                                                            <a onclick="deleteUser('<?=$get["data"]?>', '<?=$get["ID"]?>')" style="color: #000; text-decoration: none;"><i class="fa fa-trash-o"></i></a>
+                                                        </td>
                                                     </tr>
                                         <?php
                                                   }
@@ -101,9 +119,9 @@
 </html>
 
 <script type="text/javascript">
-    function deleteUser(name, id) {
-        if(confirm('Tem a certeza que pretende eliminar o utilizador ' + name + '?')) {
-            window.location = "delete.php?table=users&id="+id;
+    function deleteUser(data, id) {
+        if(confirm('Tem a certeza que pretende desmarcar a consulta do dia ' + data + '?')) {
+            window.location = "delete.php?table=consultas&id="+id;
         }
     }
 </script>

@@ -42,7 +42,6 @@
                 $('.onporto').attr('disabled', false);
             }
             else if(unidade == "Coimbra") {
-                alert("coimbra");
                 $('.onlisboa').attr('disabled', true);
                 $('.onporto').attr('disabled', true);
                 $('.onfaro').attr('disabled', true);

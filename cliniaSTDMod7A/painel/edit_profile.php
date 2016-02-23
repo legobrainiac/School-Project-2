@@ -17,8 +17,13 @@
         <?php 
             $username = $_SESSION["user"];
 
-            $id = $_GET['id'];
-            $check = $mysqli->query("SELECT * FROM users WHERE ID = '$id'");
+            $idUser = $_GET['id'];
+
+            if($id != $idUser && $permissao != 1) {
+                alert("Não tem permissão para alterar este perfil");
+                header('Location: index.php');
+            }
+            $check = $mysqli->query("SELECT * FROM users WHERE ID = '$idUser'");
             $row   = $check->num_rows;
             if($row) {
                 $dados = $check->fetch_array();
@@ -150,47 +155,8 @@
                                     </div> <!-- .form-group -->
 
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Nome de utilizador:</label>
-                                        <div class="col-md-8">
-                                            <?php
-                                                if(isset($_POST["btnAddUser"]) && empty($_POST["txtUsername"]))
-                                                {
-                                                    $haerro = true;
-                                                    erroForm("Por favor, introduza um nome de utilizador.");
-                                                }
-
-                                                if(isset($_POST["btnAddUser"]) && !empty($_POST["txtUsername"]) && !empty($_POST["txtEmail"])) {
-                                                    $email_tmp    = $_POST["txtEmail"];
-                                                    $username_tmp = $_POST["txtUsername"]; 
-                                                    $query = $mysqli->query("SELECT * FROM users WHERE email='$email_tmp' OR username='$username_tmp'");
-                                                    $row = $query->num_rows;
-                                                    if($row > 0) {
-                                                        $error = true;
-                                                        echo "
-                                                            <div class='alert alert-warning' role='alert' style='font-size:10pt; margin-left: 0px;'>
-                                                            <span class='glyphicon glyphicon-warning-sign' aria-hidden='true'></span>
-                                                            <span class='sr-only'>Erro:</span>
-                                                            Utilizador ou e-mail já registrados.<br />
-                                                            Por favor, introduza valores diferentes.
-                                                            </div>  
-                                                        ";
-                                                    }
-                                                }
-                                            ?>
-                                            <input class="form-control" placeholder="Username" type="text" name="txtUsername" value="<?=$valueUsername?>">
-                                        </div> <!-- .col-lg-8 -->
-                                    </div> <!-- .form-group -->
-
-                                    <div class="form-group">
                                         <label class="col-md-3 control-label">Password:</label>
                                         <div class="col-md-8">
-                                            <?php
-                                                if(isset($_POST["btnAddUser"]) && empty($_POST["txtPassword"]))
-                                                {
-                                                    $haerro = true;
-                                                    erroForm("Por favor, introduza uma password para o utilizador.");
-                                                }
-                                            ?>
                                             <input class="form-control" placeholder="11111122333" type="password" name="txtPassword">
                                         </div> <!-- .col-lg-8 -->
                                     </div> <!-- .form-group -->
@@ -198,13 +164,6 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Confirme a password:</label>
                                         <div class="col-md-8">
-                                            <?php
-                                                if(isset($_POST["btnAddUser"]) && ($_POST["txtPassword"] != $_POST["txtConfPass"]))
-                                                {
-                                                    $haerro = true;
-                                                    erroForm("As duas password's não coincidem.<br/>Por razões de segurança, elas devem ser iguais...");
-                                                }
-                                            ?>
                                             <input class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" type="password" name="txtConfPass">
                                         </div> <!-- .col-lg-8 -->
                                     </div> <!-- .form-group -->
@@ -285,35 +244,23 @@
 </html>
 
 <?php 
-    if(isset($_POST["btnAddUser"]) && !$error) {
-        $usernameIns    = $_POST["txtUsername"];
-        if($_POST["txtPassword"] != "") $passwordIns = md5(sha1(sha1(md5($_POST["txtPassword"])))); 
-        $nameIns        = $_POST["txtName"];
+    if(isset($_POST["btnAddUser"]) && !$haerro) {
+        $passwordIns    = sha1(sha1(md5(sha1($_POST["txtPassword"])))); 
+        $nameIns        = $_POST["txtNome"];
         $emailIns       = $_POST["txtEmail"];
-        $cityIns        = $_POST["txtCity"];
-        $informationIns = $_POST["txtInformation"];
-        $birthdayIns    = $_POST["txtBirthday"];
-        $functionIns    = $_POST["txtFunction"];
-        $joinedIns      = $_POST["txtJoined"];
+        $moradaIns      = $_POST["txtRua"] . "<br />" . $_POST["txtLocalidade"] . "<br />" . $_POST["txtCodigoPostal"];
+        $birthdayIns    = $_POST["txtDataNascimento"];
+        $permissionIns  = $_POST["txtPermissoes"];
+        $telemovelIns   = $_POST["txtTelemovel"];
         $linkFbIns      = $_POST["txtLinkFb"];
-        $linkTwIns      = $_POST["txtLinkTw"];
-        $linkGhIns      = $_POST["txtLinkGh"];
 
-        if($usernameIns != $_username) $mysqli->query("UPDATE users SET username = '$usernameIns' WHERE ID = '$id';");
-        if(isset($passwordIns)) {
-            echo "<script>alert('ALTERAR!!!');</script>";
-            $mysqli->query("UPDATE users SET password = '$passwordIns' WHERE ID = '$id'");
-        }
-        if($nameIns != $_name) $mysqli->query("UPDATE users SET name = '$nameIns' WHERE ID = '$id'");
-        if($emailIns != $_mail) $mysqli->query("UPDATE users SET email = '$emailIns' WHERE ID = '$id'");
-        if($cityIns != $_city) $mysqli->query("UPDATE users SET city = '$cityIns' WHERE ID = '$id'");
-        if($informationIns != $information) $mysqli->query("UPDATE users SET information = '$informationIns' WHERE ID = '$id'");
-        if($birthdayIns != $_birthday) $mysqli->query("UPDATE users SET birthday = '$birthdayIns' WHERE ID = '$id'");
-        if($functionIns != $_function) $mysqli->query("UPDATE users SET function = '$functionIns' WHERE ID = '$id'");
-        if($joinedIns != $_joined) $mysqli->query("UPDATE users SET joined = '$joinedIns' WHERE ID = '$id'");
-        if($linkFbIns != $_link_fb) $mysqli->query("UPDATE users SET link_facebook = '$linkFbIns' WHERE ID = '$id'");
-        if($linkTwIns != $_link_tw) $mysqli->query("UPDATE users SET link_twitter = '$linkTwIns' WHERE ID = '$id'");
-        if($linkGhIns != $_link_gh) $mysqli->query("UPDATE users SET link_github = '$linkGhIns' WHERE ID = '$id'");
+        if(isset($passwordIns)) $mysqli->query("UPDATE users SET password = '$passwordIns' WHERE ID = '$idUser'");
+        if($nameIns != $_name) $mysqli->query("UPDATE users SET nome = '$nameIns' WHERE ID = '$idUser'");
+        if($emailIns != $_mail) $mysqli->query("UPDATE users SET email = '$emailIns' WHERE ID = '$idUser'");
+        if($moradaIns != $_morada) $mysqli->query("UPDATE users SET morada = '$cityIns' WHERE ID = '$idUser'");
+        if($birthdayIns != $_dataNascimento) $mysqli->query("UPDATE users SET dataNascimento = '$birthdayIns' WHERE ID = '$idUser'");
+        if($telemovelIns != $_telemovel) $mysqli->query("UPDATE users SET telemovel = '$telemovelIns' WHERE ID = '$idUser'");
+        if($linkFbIns != $_link_fb) $mysqli->query("UPDATE users SET linkFb = '$linkFbIns' WHERE ID = '$idUser'");
 
         if (isset($_FILES['imgPerfil'])) {
             $file = $_FILES['imgPerfil'];
@@ -336,6 +283,6 @@
                 }
             }
         }
-        echo "<script>alert('Saved changes!');</script>";
+        echo "<script>alert('Alterações Guardadas!');</script>";
     }
 ?>

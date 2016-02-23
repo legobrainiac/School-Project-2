@@ -67,7 +67,4 @@
             <li><a href="?func=sairPagina"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Terminar Sessão</a></li>
           </ul>
         </span>
-        <span id="open_menu">
-            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-        </span>
 </span>
