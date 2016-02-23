@@ -58,7 +58,8 @@
                                 <form method="POST" action="">
                                     <div class="form-group">
                                         <label for="clinica">Para:</label>
-                                        <select class="form-control" id="cboClinicas" name="optDestinatario">
+                                        <?php $nameUser = $dadosDest['username']?>
+                                        <select class="form-control" id="cboClinicas" name="optDestinatario" onchange="actFotos('<?=$nameUser?>')">
                                         <?php 
                                             $nomesUtilizadores = $mysqli->query("SELECT * FROM users WHERE permissoes != 4 AND username != '$username'");
                                             if($nomesUtilizadores->num_rows > 0) {
@@ -71,7 +72,6 @@
                                         ?>
                                         </select>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="clinica">Mensagem:</label>
                                         <textarea class="form-control" rows="10" name="txtMensagem"></textarea>

@@ -181,7 +181,13 @@
                           </div> <!-- /panel-heading -->
                           <div class="panel-body">
                             Ajude-nos a conhecer o que mais valoriza e contribua para temas relevantes na área da saúde. Agradecemos o seu contributo.<br/><br/>
-                            <div class="alert alert-warning">Não existem inquéritos ativos.</div>
+                             <table class="table table-striped"> 
+                                    <tbody>
+	                                    <tr> 
+	                                        <td><a href="votacao.php">Inquérito: Heteroavaliação do trabalho</a></td>
+	                                    </tr>
+                                    </tbody> 
+                                </table>
                           </div> <!-- /.panel-body -->
                         </div> <!-- /.panel -->
                     </div>

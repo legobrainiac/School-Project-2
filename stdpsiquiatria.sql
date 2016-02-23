@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Fev-2016 às 23:20
+-- Generation Time: 24-Fev-2016 às 00:01
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `consultas` (
   `data` date NOT NULL,
   `hora` varchar(20) NOT NULL,
   `medico` text NOT NULL,
+  `ativo` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -41,10 +42,10 @@ CREATE TABLE IF NOT EXISTS `consultas` (
 -- Extraindo dados da tabela `consultas`
 --
 
-INSERT INTO `consultas` (`ID`, `clinica`, `nome`, `especialidade`, `data`, `hora`, `medico`) VALUES
-(1, 'Porto', 'André Santos', 'Psicologia', '2016-02-23', '15:05-15:50', 'Álvaro Sá'),
-(2, 'Lisboa', 'André Santos', 'Psiquiatria', '2016-02-14', '08:25-09:10', 'Ricardo Moreira'),
-(3, 'Lisboa', 'Tomás Pinto', 'Psicologia', '2016-02-11', '08:25-09:10', 'Ricardo Moreira');
+INSERT INTO `consultas` (`ID`, `clinica`, `nome`, `especialidade`, `data`, `hora`, `medico`, `ativo`) VALUES
+(1, 'Porto', 'André Santos', 'Psicologia', '2016-03-23', '15:05-15:50', 'Álvaro Sá', 1),
+(2, 'Lisboa', 'André Santos', 'Psiquiatria', '2016-02-14', '08:25-09:10', 'Ricardo Moreira', 1),
+(3, 'Porto', 'Tomás Pinto', 'Neurologia', '2016-03-25', '15:05-15:50', 'Afonso Martins', 1);
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `mensagens` (
 
 INSERT INTO `mensagens` (`ID`, `emissor`, `recetor`, `mensagem`, `data`) VALUES
 (1, 'andrefilsantos', 'legobrainiac', '#oaeomi', '2016-02-17 00:00:00'),
-(2, 'andrefilsantos', 'andrefilsantos', 'Lobe Mi', '2016-02-17 00:00:00'),
+(2, 'legobrainiac', 'andrefilsantos', 'Lobe Mi', '2016-02-17 00:00:00'),
 (3, 'andrefilsantos', 'admin', 'Tudo funciona incrivelmente bem! Parabéns!!!', '2016-02-17 00:00:00'),
 (4, 'admin', 'andrefilsantos', '#oaef', '0000-00-00 00:00:00'),
 (5, 'legobrainiac', 'andrefilsantos', 'Nesta turma é só pros... a copiar!', '2016-02-17 13:30:00');
@@ -158,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `site` (
 --
 
 INSERT INTO `site` (`ID`, `nome`, `slogan`, `SobreNosTexto`, `paginaErroTexto`, `email`, `telefone`, `manutencao`, `visitas`) VALUES
-(1, 'STD Psiquiatria', 'A sua mente, a nossa força!', 'Somos especialistas num vasto leque de solicitações na área da psiquiatria, psicologia e psicoterapia de orientação psicanalítica (individual ou em grupo). Garantimos um atendimento humanizado e com profissionais altamente especializados num espaço personalizado, atraente e confortável pensado para o bem estar dos nossos clientes. \n<br /><br />\nComo procuramos padrões de excelência na prestação de cuidados, possuímos um corpo clínico altamente especializado e qualificado e em permanente actualização. Os nossos psicoterapeutas têm formação técnica específica validada por Associação ou Sociedade Científica com reconhecimento internacional.', '<h3><i class="fa fa-warning text-yellow"></i> Oops! Página não encontrada..</h3>\n<p>\nLamentamos mas a página que procura não se encontra disponível.<br />\n<br />\nA página poderá ter sido removida, estar temporariamente indisponível ou o endereço poderá ter sido alterado. <br />\n<br />\nSugerimos que verifique se o endereço está escrito corretamente, ou efectue uma pesquisa sobre o tema pretendido.<br /><br />\nPode <a href="index.php" class="error-link">voltar à página principal</a> ou <a href="contactos.php" class="error-link">contactar-nos</a> para informar o problema indicando:<br />\nEndereço / url da página onde se encontrava<br />\nData e hora do erro<br/>\n<br />\nAgradecemos a sua colaboração.\n</p>', 'geral@stdpsiquiatria.pt', '800000000', 0, 3191);
+(1, 'STD Psiquiatria', 'A sua mente, a nossa força!', 'Somos especialistas num vasto leque de solicitações na área da psiquiatria, psicologia e psicoterapia de orientação psicanalítica (individual ou em grupo). Garantimos um atendimento humanizado e com profissionais altamente especializados num espaço personalizado, atraente e confortável pensado para o bem estar dos nossos clientes. \n<br /><br />\nComo procuramos padrões de excelência na prestação de cuidados, possuímos um corpo clínico altamente especializado e qualificado e em permanente actualização. Os nossos psicoterapeutas têm formação técnica específica validada por Associação ou Sociedade Científica com reconhecimento internacional.', '<h3><i class="fa fa-warning text-yellow"></i> Oops! Página não encontrada..</h3>\n<p>\nLamentamos mas a página que procura não se encontra disponível.<br />\n<br />\nA página poderá ter sido removida, estar temporariamente indisponível ou o endereço poderá ter sido alterado. <br />\n<br />\nSugerimos que verifique se o endereço está escrito corretamente, ou efectue uma pesquisa sobre o tema pretendido.<br /><br />\nPode <a href="index.php" class="error-link">voltar à página principal</a> ou <a href="contactos.php" class="error-link">contactar-nos</a> para informar o problema indicando:<br />\nEndereço / url da página onde se encontrava<br />\nData e hora do erro<br/>\n<br />\nAgradecemos a sua colaboração.\n</p>', 'geral@stdpsiquiatria.pt', '800000000', 0, 3875);
 
 -- --------------------------------------------------------
 
@@ -211,8 +212,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`ID`, `username`, `password`, `email`, `nome`, `dataNascimento`, `last_sign`, `morada`, `telemovel`, `linkFb`, `permissoes`, `ativo`) VALUES
 (1, 'admin', '5978e5f2cf104d341b7eed9aa7f8c779883e1408', 'geral@stdpsiquiatria.pt', 'Administrador', '2015-09-22', '05/02/2016 às 14:34', '', '', '', '1', 1),
-(2, 'andrefilsantos', '8eabf3da57c8248a4383ae6365f7490864a98bc7', 'andrefilipepsantos@hotmail.com', 'André Santos', '1998-10-20', '21/02/2016 às 22:00', 'Rua do André<br />Localidade do André<br />0000-000', '960000000', 'https://www.facebook.com/andrefpdsantos', '1', 1),
-(3, 'legobrainiac', '39678b7c89f6913bad3c85339580e164c47485b8', 'tomas.antonio.sp@gmail.com', 'Tomás Pinto', '2015-09-04', '', 'Rua do Tomás<br />Localidade do Tomás<br />1111-111', '910000000', 'https://www.facebook.com/profile.php?id=100000728210384', '1', 1),
+(2, 'andrefilsantos', '8eabf3da57c8248a4383ae6365f7490864a98bc7', 'andrefilipepsantos@hotmail.com', 'André Santos', '1998-10-20', '23/02/2016 às 22:55', 'Rua do André<br />Localidade do André<br />0000-000', '960000000', 'https://www.facebook.com/andrefpdsantos', '1', 1),
+(3, 'legobrainiac', '9406b0bad04974a682fc6dc84ef6d47c800058d6', 'tomas.antonio.sp@gmail.com', 'Tomás Pinto', '2015-09-04', '23/02/2016 às 16:51', '', '910000000', 'https://www.facebook.com/profile.php?id=100000728210384', '1', 1),
 (4, 'filiparodrigues', '5c72570e0d66002e5c618ef71b6c70685b3d4c07', 'a20584@esenviseu.net', 'Filipa Rodrigues', '2014-02-14', '', 'Rua da Filipa<br />Localidade da Filipa<br />1111-111', '000000000', '', '4', 1),
 (5, 'carlosbento', '27a7108f17eddc6c264061ce9c21210c57613020', 'a20575@esenviseu.net', 'Carlos Bento', '2014-02-14', '', 'Rua do Bento<br />Bentalândia<br />1111-111', '111111111', '', '4', 1),
 (6, 'carloscastanheira', '1d79a340aa29ad29475fe2df54f69c4250dc8386', 'a20589@esenviseu.net', 'Carlos Castanheira', '2014-02-14', '', 'Rua do Castanheira<br />Localidade do Castanheira<br />2222-222', '222222222', '', '4', 1),
@@ -262,15 +263,15 @@ CREATE TABLE IF NOT EXISTS `votacao` (
   `heteroavaliacao` int(11) NOT NULL,
   `comentario` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `votacao`
 --
 
 INSERT INTO `votacao` (`ID`, `votante`, `heteroavaliacao`, `comentario`) VALUES
-(1, 'André Santos', 20, 'Fantástico!'),
-(2, 'Filipa Rodrigues', 10, '');
+(4, 'André Santos', 20, ''),
+(5, 'Tomás Pinto', 20, '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -35,7 +35,7 @@
         <div class="link" title="Utilizadores"><i class="fa fa-users"></i><label class="dsblb">Utilizadores<i class="fa fa-chevron-down"></i></div>
         <ul class="submenu">
             <li><a href="allUsers" title="Todos os utilizadores"><label class="dsblb">Todos os utilizadores</a></li>
-            <li><a href="addUser" title="Adicionar novo"><label class="dsblb">Novo Utilizador</a></li> 
+            <?php if($permissao == 1) { ?><li><a href="recuperarUsers" title="Adicionar novo"><label class="dsblb">Recuperar Utilizadores</a></li> <?php } ?>
         </ul>
     </li>
     <?php if($permissao == 1) { ?>

@@ -64,7 +64,6 @@
                                             <th>Especialidade</th> 
                                             <th>Data e Hora</th>
                                             <th>Médico</th> 
-                                            <th>Opções</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,7 +81,6 @@
                                                         <td><?=$get["especialidade"]?></td>
                                                         <td><?=$get["data"]." às ".$get["hora"][0].$get["hora"][1].$get["hora"][2].$get["hora"][3].$get["hora"][4]?></td>
                                                         <td><?=$get["medico"]?></td>
-                                                        <td>Opções</td>
                                                     </tr>
                                         <?php
                                                 }
